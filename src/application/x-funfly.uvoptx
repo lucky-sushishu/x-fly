@@ -120,7 +120,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>JL2CM3</Key>
-          <Name>-U20090928 -O78 -S2 -ZTIFSpeedSel5000 -A0 -C0 -JU1 -JI127.0.0.1 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(2BA01477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO15 -FD20000000 -FC1000 -FN1 -FF0STM32F4xx_512.FLM -FS08000000 -FL080000 -FP0($$Device:STM32F411CEUx$CMSIS\Flash\STM32F4xx_512.FLM)</Name>
+          <Name>-U20090928 -O78 -S2 -ZTIFSpeedSel5000 -A0 -C0 -JU1 -JI127.0.0.1 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(2BA01477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8008 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO15 -FD20000000 -FC1000 -FN1 -FF0STM32F4xx_512.FLM -FS08000000 -FL080000 -FP0($$Device:STM32F411CEUx$CMSIS\Flash\STM32F4xx_512.FLM)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -206,8 +206,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\gpio.c</PathWithFileName>
-      <FilenameWithoutPath>gpio.c</FilenameWithoutPath>
+      <PathWithFileName>.\stm32f4xx_hal_msp.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_msp.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -218,8 +218,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\stm32f4xx_hal_msp.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_msp.c</FilenameWithoutPath>
+      <PathWithFileName>.\stm32f4xx_it.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_it.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -230,8 +230,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\stm32f4xx_it.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_it.c</FilenameWithoutPath>
+      <PathWithFileName>.\gpio.c</PathWithFileName>
+      <FilenameWithoutPath>gpio.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -250,7 +250,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\startup_stm32f411xe.s</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f411xe.s</PathWithFileName>
       <FilenameWithoutPath>startup_stm32f411xe.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -270,7 +270,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -282,7 +282,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_adc.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_adc.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_adc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -294,7 +294,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_adc_ex.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_adc_ex.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_adc_ex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -306,7 +306,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_can.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_can.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_can.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -318,7 +318,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cec.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cec.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_cec.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -330,7 +330,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_cortex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -342,7 +342,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_crc.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_crc.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_crc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -354,7 +354,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cryp.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cryp.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_cryp.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -366,7 +366,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cryp_ex.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cryp_ex.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_cryp_ex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -378,7 +378,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dac.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dac.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_dac.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -390,7 +390,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dac_ex.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dac_ex.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_dac_ex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -402,7 +402,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dcmi.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dcmi.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_dcmi.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -414,7 +414,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dcmi_ex.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dcmi_ex.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_dcmi_ex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -426,7 +426,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dfsdm.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dfsdm.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_dfsdm.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -438,7 +438,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_dma.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -450,7 +450,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma_ex.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma_ex.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_dma_ex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -462,7 +462,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma2d.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma2d.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_dma2d.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -474,7 +474,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dsi.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dsi.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_dsi.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -486,7 +486,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_eth.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_eth.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_eth.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -498,7 +498,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_exti.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_exti.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_exti.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -510,7 +510,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_flash.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -522,7 +522,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash_ex.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash_ex.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_flash_ex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -534,7 +534,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash_ramfunc.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash_ramfunc.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_flash_ramfunc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -546,7 +546,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_fmpi2c.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_fmpi2c.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_fmpi2c.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -558,7 +558,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_fmpi2c_ex.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_fmpi2c_ex.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_fmpi2c_ex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -570,7 +570,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_fmpsmbus.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_fmpsmbus.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_fmpsmbus.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -582,7 +582,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_fmpsmbus_ex.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_fmpsmbus_ex.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_fmpsmbus_ex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -594,7 +594,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_gpio.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_gpio.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_gpio.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -606,7 +606,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_hash.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_hash.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_hash.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -618,7 +618,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_hash_ex.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_hash_ex.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_hash_ex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -630,8 +630,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_hcd.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_hcd.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_i2c.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -642,8 +642,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_i2c.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c_ex.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_i2c_ex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -654,8 +654,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c_ex.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_i2c_ex.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2s.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_i2s.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -666,8 +666,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2s.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_i2s.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2s_ex.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_i2s_ex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -678,8 +678,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2s_ex.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_i2s_ex.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_irda.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_irda.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -690,8 +690,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_irda.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_irda.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_iwdg.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_iwdg.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -702,8 +702,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_iwdg.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_iwdg.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_lptim.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_lptim.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -714,8 +714,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_lptim.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_lptim.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_ltdc.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_ltdc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -726,8 +726,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_ltdc.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_ltdc.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_ltdc_ex.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_ltdc_ex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -738,8 +738,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_ltdc_ex.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_ltdc_ex.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_mmc.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_mmc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -750,8 +750,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_mmc.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_mmc.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_nand.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_nand.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -762,8 +762,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_nand.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_nand.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_nor.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_nor.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -774,8 +774,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_nor.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_nor.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pccard.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_pccard.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -786,8 +786,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pccard.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_pccard.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_pwr.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -798,8 +798,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pcd.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_pcd.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr_ex.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_pwr_ex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -810,8 +810,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pcd_ex.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_pcd_ex.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_qspi.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_qspi.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -822,8 +822,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_pwr.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_rcc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -834,8 +834,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr_ex.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_pwr_ex.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc_ex.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_rcc_ex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -846,8 +846,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_qspi.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_qspi.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rng.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_rng.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -858,8 +858,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_rcc.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rtc.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_rtc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -870,8 +870,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc_ex.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_rcc_ex.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rtc_ex.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_rtc_ex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -882,8 +882,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rng.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_rng.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_sai.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_sai.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -894,8 +894,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rtc.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_rtc.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_sai_ex.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_sai_ex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -906,8 +906,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rtc_ex.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_rtc_ex.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_sdram.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_sdram.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -918,8 +918,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_sai.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_sai.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_smartcard.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_smartcard.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -930,8 +930,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_sai_ex.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_sai_ex.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_smbus.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_smbus.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -942,8 +942,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_sd.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_sd.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_spdifrx.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_spdifrx.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -954,8 +954,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_sdram.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_sdram.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_spi.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_spi.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -966,8 +966,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_smartcard.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_smartcard.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_sram.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_sram.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -978,8 +978,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_smbus.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_smbus.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_tim.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -990,8 +990,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_spdifrx.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_spdifrx.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim_ex.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_tim_ex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1002,8 +1002,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_spi.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_spi.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_uart.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_uart.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1014,8 +1014,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_sram.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_sram.c</FilenameWithoutPath>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_usart.c</PathWithFileName>
+      <FilenameWithoutPath>stm32f4xx_hal_usart.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1026,55 +1026,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_tim.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>70</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim_ex.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_tim_ex.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>71</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_uart.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_uart.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>72</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_usart.c</PathWithFileName>
-      <FilenameWithoutPath>stm32f4xx_hal_usart.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>3</GroupNumber>
-      <FileNumber>73</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.27.1\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_wwdg.c</PathWithFileName>
+      <PathWithFileName>..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_wwdg.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_hal_wwdg.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1083,13 +1035,13 @@
 
   <Group>
     <GroupName>CMSIS</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>4</GroupNumber>
-      <FileNumber>74</FileNumber>
+      <FileNumber>70</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
