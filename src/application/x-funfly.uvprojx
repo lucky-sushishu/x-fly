@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F411xE</Define>
               <Undefine></Undefine>
-              <IncludePath>..\application;..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Inc;..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Inc\Legacy;..\lib\STM32Cube_FW_F4_V1.28.0\CMSIS\Device\ST\STM32F4xx\Include;..\lib\STM32Cube_FW_F4_V1.28.0\CMSIS\Include;..\..\rtos\threadx\common\inc;..\..\rtos\threadx\ports\cortex_m4\ac6\inc</IncludePath>
+              <IncludePath>..\application;..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Inc;..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Inc\Legacy;..\lib\STM32Cube_FW_F4_V1.28.0\CMSIS\Device\ST\STM32F4xx\Include;..\lib\STM32Cube_FW_F4_V1.28.0\CMSIS\Include;..\..\rtos\threadx\common\inc;..\..\rtos\threadx\ports\cortex_m4\ac6\inc;.\driver\mpu9250;.\driver\i2c</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1742,6 +1742,26 @@
               <FileName>tx_timer_interrupt.S</FileName>
               <FileType>2</FileType>
               <FilePath>..\..\rtos\threadx\ports\cortex_m4\ac6\src\tx_timer_interrupt.S</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>drivers/mpu9250</GroupName>
+          <Files>
+            <File>
+              <FileName>mpu9250.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\driver\mpu9250\mpu9250.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>drivers/i2c</GroupName>
+          <Files>
+            <File>
+              <FileName>i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\driver\i2c\i2c.c</FilePath>
             </File>
           </Files>
         </Group>
