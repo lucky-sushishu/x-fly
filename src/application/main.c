@@ -20,6 +20,10 @@
 #include "main.h"
 #include "gpio.h"
 #include "tx_api.h"
+#include "i2c.h"
+#include "mpu9250.h"
+#include "usart.h"
+#include "delay.h"
 
 /** @addtogroup STM32F4xx_HAL_Examples
   * @{
@@ -65,14 +69,28 @@ int main(void)
   /* Add your application code here
      */
 	MX_GPIO_Init();
+	MX_USART1_UART_Init();
 	
-	tx_kernel_enter();
+	uint8_t res = mpu9250_work_mode_init();
+	printf("mpu9250 init result is %d\n", res);
+	printf("code begin\n");
+	
+//	tx_kernel_enter();
 
+	int16_t gyrox, gyroy, gyroz;
+	int16_t accex, accey ,accez;
+	int16_t temp;
 
   /* Infinite loop */
   while (1)
   {
+		MPU_Get_Gyro(&gyrox, &gyroy, &gyroz);
+		MPU_Get_Acce(&accex, &accey, &accez);
+		temp = MPU_Get_Temperture();
+		printf("gyro: %d %d %d, acce: %d %d %d, temp=%d\n", gyrox, gyroy, gyroz, accex, accey, accez, temp);
 		
+		HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_12);
+		delay_ms(500);
   }
 }
 
