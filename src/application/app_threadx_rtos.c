@@ -31,7 +31,7 @@ void mpu9250(ULONG thread_input)
 	i2c_init();
 	while(1)
 	{
-		if(mpu9250_work_mode_init())
+		if(mpu9250_init())
 		{
 			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);
 		}

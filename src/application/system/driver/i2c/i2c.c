@@ -1,34 +1,7 @@
 #include "i2c.h"
 
-static void i2c_delay_us(uint32_t us)
-{
-	uint32_t i;
-	/* 100Mhz: 1 nop, 1 us */
-	for(i = 0; i < us; i++)
-	{
-		__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();
-		__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();
-		__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();
-		__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();
-		__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();
-		__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();
-		__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();
-		__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();
-		__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();
-		__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();__NOP(); __NOP();
-	}
-}
 
-void delay_ms(uint16_t ms)
-{
-	uint32_t i;
-	for(i=0;i<ms;i++) i2c_delay_us(1000);
-}
 
-static void i2c_delay(void)
-{
-	i2c_delay_us(3);
-}
 
 static void i2c_io_config(void)
 {
@@ -41,7 +14,7 @@ static void i2c_io_config(void)
   GPIO_InitStruct.Pin = GPIO_PIN_8 | GPIO_PIN_9;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 	
 	/*Configure GPIO pin Output Level */
@@ -59,10 +32,10 @@ void i2c_start(void)
 	SDA_OUT();
 	I2C_SCL_H;
 	I2C_SDA_H;
-	i2c_delay_us(4);
+	delay_us(4);
 	
 	I2C_SDA_L;
-	i2c_delay_us(4);
+	delay_us(4);
 	
 	I2C_SCL_L;
 }
@@ -72,10 +45,11 @@ void i2c_stop(void)
 	SDA_OUT();
 	I2C_SDA_L;
 	I2C_SCL_L;
-	i2c_delay_us(4);
+	delay_us(4);
 	
-	I2C_SDA_L;
-	i2c_delay_us(4);
+//	I2C_SDA_L;
+	I2C_SCL_H;
+	delay_us(4);
 	I2C_SDA_H;
 }
 
@@ -86,8 +60,8 @@ uint8_t i2c_wait_ack(void)
 	uint8_t ucErrTime;
 	SDA_IN();
 	
-	I2C_SDA_H; i2c_delay_us(1);
-	I2C_SCL_H; i2c_delay_us(1);
+	I2C_SDA_H; delay_us(1);
+	I2C_SCL_H; delay_us(1);
 	
 	while(I2C_SDA_GET)
 	{
@@ -109,13 +83,13 @@ void i2c_ack(void)
 	
 	SDA_OUT();
 	I2C_SDA_L;
-	i2c_delay_us(2);
+	delay_us(2);
 	
 	I2C_SCL_H;
-	i2c_delay_us(2);
+	delay_us(2);
 	
 	I2C_SCL_L;
-	i2c_delay_us(2);
+	delay_us(2);
 }
 
 void i2c_nack(void)
@@ -123,10 +97,10 @@ void i2c_nack(void)
 	I2C_SCL_L;
 	SDA_OUT();
 	I2C_SDA_H;
-	i2c_delay_us(2);
+	delay_us(2);
 	
 	I2C_SCL_H;
-	i2c_delay_us(2);
+	delay_us(2);
 	I2C_SCL_L;
 }
 
@@ -144,11 +118,11 @@ void i2c_send_byte(uint8_t SendByte)
 		else {
 			I2C_SDA_L;
 		}
-		i2c_delay_us(2);
+		delay_us(2);
 		I2C_SCL_H;
-		i2c_delay_us(2);
+		delay_us(2);
 		I2C_SCL_L;
-		i2c_delay_us(2);
+		delay_us(2);
 		
 		SendByte <<= 1;
 	}
@@ -162,12 +136,12 @@ uint8_t i2c_read_byte(uint8_t ack)
 	for(i = 0; i < 8; i++)
 	{
 		I2C_SCL_L;
-		i2c_delay_us(2);
+		delay_us(2);
 		I2C_SCL_H;
 		
 		vaule <<= 1;
 		if(I2C_SDA_GET) vaule++;
-		i2c_delay_us(1);
+		delay_us(1);
 	}
 	if(!ack)
 		i2c_nack();

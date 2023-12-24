@@ -313,7 +313,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>2</Optim>
+            <Optim>1</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F411xE</Define>
               <Undefine></Undefine>
-              <IncludePath>..\application;..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Inc;..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Inc\Legacy;..\lib\STM32Cube_FW_F4_V1.28.0\CMSIS\Device\ST\STM32F4xx\Include;..\lib\STM32Cube_FW_F4_V1.28.0\CMSIS\Include;..\..\rtos\threadx\common\inc;..\..\rtos\threadx\ports\cortex_m4\ac6\inc;.\driver\mpu9250;.\driver\i2c;.\system</IncludePath>
+              <IncludePath>..\application;..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Inc;..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Inc\Legacy;..\lib\STM32Cube_FW_F4_V1.28.0\CMSIS\Device\ST\STM32F4xx\Include;..\lib\STM32Cube_FW_F4_V1.28.0\CMSIS\Include;..\..\rtos\threadx\common\inc;..\..\rtos\threadx\ports\cortex_m4\ac6\inc;.\driver\mpu9250;.\system\driver\i2c;.\system</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -409,19 +409,24 @@
               <FilePath>.\usart.c</FilePath>
             </File>
             <File>
-              <FileName>tx_initialize_low_level.S</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\tx_initialize_low_level.S</FilePath>
-            </File>
-            <File>
               <FileName>app_threadx_rtos.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\app_threadx_rtos.c</FilePath>
             </File>
             <File>
+              <FileName>tx_initialize_low_level.S</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\tx_initialize_low_level.S</FilePath>
+            </File>
+            <File>
               <FileName>stm32f4xx_hal_timebase_tim.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\stm32f4xx_hal_timebase_tim.c</FilePath>
+            </File>
+            <File>
+              <FileName>includes.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\includes.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1751,7 +1756,7 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>drivers/mpu9250</GroupName>
+          <GroupName>driver/mpu9250</GroupName>
           <Files>
             <File>
               <FileName>mpu9250.c</FileName>
@@ -1761,17 +1766,17 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>drivers/i2c</GroupName>
+          <GroupName>sys/driver/i2c</GroupName>
           <Files>
             <File>
               <FileName>i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\driver\i2c\i2c.c</FilePath>
+              <FilePath>.\system\driver\i2c\i2c.c</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>system</GroupName>
+          <GroupName>sys/delay</GroupName>
           <Files>
             <File>
               <FileName>delay.c</FileName>

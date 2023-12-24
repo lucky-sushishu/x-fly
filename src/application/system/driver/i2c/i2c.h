@@ -2,6 +2,7 @@
 #define __I2C_H
 
 #include "stm32f4xx_hal.h"
+#include "delay.h"
 
 #define SDA_IN()  {GPIOB->MODER&=~(3<<(9*2)); GPIOB->MODER |= (0<<(9*2));} /* PB9 input mode */
 #define SDA_OUT() {GPIOB->MODER&=~(3<<(9*2)); GPIOB->MODER |= (1<<(9*2));} /* PB9 output mode */

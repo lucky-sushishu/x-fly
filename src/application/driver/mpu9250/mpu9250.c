@@ -106,7 +106,8 @@ uint8_t mpu_write_len(uint8_t addr, uint8_t reg, uint8_t len, uint8_t *buf)
 */
 uint8_t MPU_Set_gyro_range(uint8_t range)
 {
-	return mpu_write_byte(MPU9250_ADDR, MPU_GYRO_CFG_REG, range << 3);
+	mpu_write_byte(MPU9250_ADDR, MPU_GYRO_CFG_REG, range << 3);
+	return 0;
 }
 
 /**
@@ -115,7 +116,8 @@ uint8_t MPU_Set_gyro_range(uint8_t range)
 */
 uint8_t MPU_Set_acce_range(uint8_t range)
 {
-	return mpu_write_byte(MPU9250_ADDR, MPU_ACCE_CFG_REG, range << 3);
+	mpu_write_byte(MPU9250_ADDR, MPU_ACCE_CFG_REG, range << 3);
+	return 0;
 }
 
 /**
@@ -150,32 +152,31 @@ uint8_t MPU_Set_rate(uint16_t rate)
 	return MPU_Set_LPF(rate / 2); // 自动设置LPF为采样率的一半
 }
 
-int mpu9250_work_mode_init(void)
+uint8_t mpu9250_init(void)
 {
 	uint8_t res = 0;
 	i2c_init();
 	mpu_write_byte(MPU9250_ADDR, MPU_PWR_MGMT1_REG, 0x80); // 复位MPU9250
 	delay_ms(100);
-	mpu_write_byte(MPU9250_ADDR, MPU_PWR_MGMT1_REG, 0X00); // 唤醒MPU9250
-	
-	MPU_Set_gyro_range(3); // 设置陀螺仪的量程为±2000deg/s
-	MPU_Set_acce_range(0); // 设置加速度计的量程为±2g
-	MPU_Set_rate(50);      // 设置采样率为50Hz
-	mpu_write_byte(MPU9250_ADDR, MPU_INT_EN_REG, 0x00);    // 关闭所有中断
-	mpu_write_byte(MPU9250_ADDR, MPU_USER_CTRL_REG, 0x00); // I2C主模式关闭
-	mpu_write_byte(MPU9250_ADDR, MPU_FIFO_EN_REG, 0x00);   // 关闭FIFO
-	mpu_write_byte(MPU9250_ADDR, MPU_INTBP_CFG_REG, 0x82); // INT引脚低电平有效，开启BYPASS模式，可以直接读取磁力计
+	mpu_write_byte(MPU9250_ADDR, MPU_PWR_MGMT1_REG, 0X00); // 唤醒MPU9250 H_RESET会自动清0
 	
 	res = mpu_read_byte(MPU9250_ADDR, MPU_WHO_AM_I);       // 读取MPU9250的ID
 	if(res == MPU9250_ID)
 	{
-		mpu_write_byte(MPU9250_ADDR, MPU_PWR_MGMT1_REG, 0x01);
+		mpu_write_byte(MPU9250_ADDR, MPU_PWR_MGMT1_REG, 0x03);
 		mpu_write_byte(MPU9250_ADDR, MPU_PWR_MGMT2_REG, 0x00); // 开启陀螺仪和加速度计(on)
-		MPU_Set_rate(50);      // 设置采样率为50Hz
 	}
 	else {
 		return 1;
 	}
+	
+	MPU_Set_gyro_range(3); // 设置陀螺仪的量程为±2000deg/s
+	MPU_Set_acce_range(2); // 设置加速度计的量程为±8G
+	MPU_Set_rate(500);      // 设置采样率为500Hz
+	mpu_write_byte(MPU9250_ADDR, MPU_INT_EN_REG, 0x00);    // 关闭所有中断
+	mpu_write_byte(MPU9250_ADDR, MPU_USER_CTRL_REG, 0x00); // I2C主模式关闭
+	mpu_write_byte(MPU9250_ADDR, MPU_FIFO_EN_REG, 0x00);   // 关闭FIFO
+	mpu_write_byte(MPU9250_ADDR, MPU_INTBP_CFG_REG, 0x02); // 开启BYPASS模式，可以直接读取磁力计
 	
 	res = mpu_read_byte(MAG_ADDR, MAG_WHO_AM_I);
 	if(res == AK8963_ID)
@@ -192,10 +193,10 @@ int mpu9250_work_mode_init(void)
 /**
 *return:温度值
 */
-int16_t MPU_Get_Temperture(void)
+short MPU_Get_Temperture(void)
 {
 	uint8_t buf[2];
-	int16_t raw;
+	short raw;
 	float temp;
 	
 	mpu_read_len(MPU9250_ADDR, MPU_TEMP_OUTH_REG, 2, buf);
@@ -208,7 +209,7 @@ int16_t MPU_Get_Temperture(void)
 *des   :得到陀螺仪值(原始值)
 *return:返回0设置成功，返回其他设置失败
 */
-uint8_t MPU_Get_Gyro(int16_t *gx, int16_t *gy, int16_t *gz)
+uint8_t MPU_Get_Gyro(short *gx, short *gy, short *gz)
 {
 	uint8_t buf[6], res;
 	res = mpu_read_len(MPU9250_ADDR, MPU_GYRO_XOUT_H, 6, buf);
@@ -225,7 +226,7 @@ uint8_t MPU_Get_Gyro(int16_t *gx, int16_t *gy, int16_t *gz)
 *des   :得到加速度值(原始值)
 *return:返回0设置成功，返回其他设置失败
 */
-uint8_t MPU_Get_Acce(int16_t *ax, int16_t *ay, int16_t *az)
+uint8_t MPU_Get_Acce(short *ax, short *ay, short *az)
 {
 	uint8_t buf[6], res;
 	res = mpu_read_len(MPU9250_ADDR, MPU_ACCEL_XOUT_H, 6, buf);
@@ -242,7 +243,7 @@ uint8_t MPU_Get_Acce(int16_t *ax, int16_t *ay, int16_t *az)
 *des   :得到磁力计值(原始值)
 *return:返回0设置成功，返回其他设置失败
 */
-uint8_t MPU_Get_Mag(int16_t *mx, int16_t *my, int16_t *mz)
+uint8_t MPU_Get_Mag(short *mx, short *my, short *mz)
 {
 	uint8_t buf[6], res;
 	res = mpu_read_len(MAG_ADDR, MAG_HXL, 6, buf);

@@ -18,12 +18,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "gpio.h"
-#include "tx_api.h"
-#include "i2c.h"
-#include "mpu9250.h"
-#include "usart.h"
-#include "delay.h"
+#include "includes.h"
 
 /** @addtogroup STM32F4xx_HAL_Examples
   * @{
@@ -70,27 +65,33 @@ int main(void)
      */
 	MX_GPIO_Init();
 	MX_USART1_UART_Init();
+//	delay_init(100);
 	
-	uint8_t res = mpu9250_work_mode_init();
-	printf("mpu9250 init result is %d\n", res);
+	uint8_t res = mpu9250_init();
+	if(res != 0) {
+		printf("[error] mpu9250 init\n");
+	}
+	
 	printf("code begin\n");
 	
 //	tx_kernel_enter();
 
-	int16_t gyrox, gyroy, gyroz;
-	int16_t accex, accey ,accez;
-	int16_t temp;
+	short gyrox, gyroy, gyroz;
+	short accex, accey ,accez;
+	short magx, magy ,magz;
+	short temp;
 
   /* Infinite loop */
   while (1)
   {
 		MPU_Get_Gyro(&gyrox, &gyroy, &gyroz);
 		MPU_Get_Acce(&accex, &accey, &accez);
+		MPU_Get_Mag(&magx, &magy ,&magz);
 		temp = MPU_Get_Temperture();
-		printf("gyro: %d %d %d, acce: %d %d %d, temp=%d\n", gyrox, gyroy, gyroz, accex, accey, accez, temp);
+		printf("gyro: %d %d %d, acce: %d %d %d, mag: %d %d %d, temp=%d\n", gyrox, gyroy, gyroz, accex, accey, accez, magx, magy ,magz, temp);
 		
 		HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_12);
-		delay_ms(500);
+		delay_ms(1000);
   }
 }
 
@@ -121,10 +122,6 @@ static void SystemClock_Config(void)
 
   /* Enable Power Control clock */
   __HAL_RCC_PWR_CLK_ENABLE();
-  
-  /* The voltage scaling allows optimizing the power consumption when the device is 
-     clocked below the maximum system frequency, to update the voltage scaling value 
-     regarding system frequency refer to product datasheet.  */
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
   
   /* Enable HSI Oscillator and activate PLL with HSI as source */

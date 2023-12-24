@@ -69,13 +69,17 @@ uint8_t mpu_read_byte(uint8_t addr, uint8_t reg);
 uint8_t mpu_read_len(uint8_t addr, uint8_t reg, uint8_t len, uint8_t *buf);
 uint8_t mpu_write_len(uint8_t addr, uint8_t reg, uint8_t len, uint8_t *buf);
 
+
 uint8_t MPU_Set_gyro_range(uint8_t range);
 uint8_t MPU_Set_acce_range(uint8_t range);
 
-int mpu9250_work_mode_init(void);
-int16_t MPU_Get_Temperture(void);
-uint8_t MPU_Get_Gyro(int16_t *gx, int16_t *gy, int16_t *gz);
-uint8_t MPU_Get_Acce(int16_t *ax, int16_t *ay, int16_t *az);
-uint8_t MPU_Get_Mag(int16_t *mx, int16_t *my, int16_t *mz);
+
+uint8_t mpu9250_init(void);
+
+
+short MPU_Get_Temperture(void);
+uint8_t MPU_Get_Gyro(short *gx, short *gy, short *gz);
+uint8_t MPU_Get_Acce(short *ax, short *ay, short *az);
+uint8_t MPU_Get_Mag(short *mx, short *my, short *mz);
 
 #endif
