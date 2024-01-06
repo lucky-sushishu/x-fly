@@ -65,33 +65,14 @@ int main(void)
      */
 	MX_GPIO_Init();
 	MX_USART1_UART_Init();
-//	delay_init(100);
-	
-	uint8_t res = mpu9250_init();
-	if(res != 0) {
-		printf("[error] mpu9250 init\n");
-	}
 	
 	printf("code begin\n");
 	
-//	tx_kernel_enter();
-
-	short gyrox, gyroy, gyroz;
-	short accex, accey ,accez;
-	short magx, magy ,magz;
-	short temp;
+	tx_kernel_enter();
 
   /* Infinite loop */
   while (1)
   {
-		MPU_Get_Gyro(&gyrox, &gyroy, &gyroz);
-		MPU_Get_Acce(&accex, &accey, &accez);
-		MPU_Get_Mag(&magx, &magy ,&magz);
-		temp = MPU_Get_Temperture();
-		printf("gyro: %d %d %d, acce: %d %d %d, mag: %d %d %d, temp=%d\n", gyrox, gyroy, gyroz, accex, accey, accez, magx, magy ,magz, temp);
-		
-		HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_12);
-		delay_ms(1000);
   }
 }
 
