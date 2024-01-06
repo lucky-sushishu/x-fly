@@ -419,11 +419,6 @@
               <FilePath>.\tx_initialize_low_level.S</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_hal_timebase_tim.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\stm32f4xx_hal_timebase_tim.c</FilePath>
-            </File>
-            <File>
               <FileName>includes.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\includes.h</FilePath>
