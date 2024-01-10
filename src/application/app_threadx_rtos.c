@@ -18,14 +18,15 @@ static UCHAR mpu9250_stack[MPU9250_STACKSIZE];
 
 typedef struct sensor_imu_s
 {
-  short gyro[3];
-  short acce[3];
-  short temp;
+  float gyro[3];
+  float acce[3];
 } sensor_imu_t;
 
 typedef struct sensor_mag_s
 {
-  short mag[3];
+  float x;
+  float y;
+  float z;
 } sensor_mag_t;
 
 void app1_led(ULONG thread_input)
@@ -44,13 +45,23 @@ void mpu9250(ULONG thread_input)
   {
     printf("[sensor]: mpu9250 init error\n");
   }
+  mpu9250_data_t mpu9250_data;
   sensor_imu_t sensor_imu;
   sensor_mag_t sensor_mag;
   while (1)
   {
-    MPU_Get_Gyro(&sensor_imu.gyro[0], &sensor_imu.gyro[1], &sensor_imu.gyro[2]);
-    MPU_Get_Acce(&sensor_imu.acce[0], &sensor_imu.acce[1], &sensor_imu.acce[2]);
-    MPU_Get_Mag(&sensor_mag.mag[0], &sensor_mag.mag[1], &sensor_mag.mag[2]);
+    mpu9250_get_gyro(&mpu9250_data);
+    sensor_imu.gyro[0] = mpu9250_data.x;
+    sensor_imu.gyro[1] = mpu9250_data.y;
+    sensor_imu.gyro[2] = mpu9250_data.z;
+    mpu9250_get_acce(&mpu9250_data);
+    sensor_imu.acce[0] = mpu9250_data.x;
+    sensor_imu.acce[1] = mpu9250_data.y;
+    sensor_imu.acce[2] = mpu9250_data.z;
+    mpu9250_get_mag(&mpu9250_data);
+    sensor_mag.x = mpu9250_data.x;
+    sensor_mag.y = mpu9250_data.y;
+    sensor_mag.z = mpu9250_data.z;
     tx_thread_sleep(1);
   }
 }
