@@ -203,7 +203,7 @@ uint8_t mpu9250_init(void)
 /**
  *return:温度值
  */
-int16_t mpu_get_temperture(void)
+int16_t mpu9250_get_temperture(void)
 {
   uint8_t buf[2];
   int16_t raw;
@@ -219,7 +219,7 @@ int16_t mpu_get_temperture(void)
  *des   :得到陀螺仪值(原始值)
  *return:返回0设置成功，返回其他设置失败
  */
-uint8_t _mpu_get_gyro_raw(int16_t *gx, int16_t *gy, int16_t *gz)
+uint8_t _mpu9250_get_gyro_raw(int16_t *gx, int16_t *gy, int16_t *gz)
 {
   uint8_t buf[6], res;
   res = mpu_read_len(MPU9250_ADDR, MPU_GYRO_XOUT_H, 6, buf);
@@ -275,7 +275,7 @@ uint8_t mpu9250_get_gyro(mpu9250_data_t *buf)
 {
   mpu9250_raw_data_t tmp;
 
-  if (_mpu_get_gyro_raw(&tmp.x, &tmp.y, &tmp.z) == 0)
+  if (_mpu9250_get_gyro_raw(&tmp.x, &tmp.y, &tmp.z) == 0)
   {
     buf->x = ((float)tmp.x) * MPU9250_GYRO_2000_SEN;
     buf->y = ((float)tmp.y) * MPU9250_GYRO_2000_SEN;
@@ -293,7 +293,7 @@ uint8_t mpu9250_get_acce(mpu9250_data_t *buf)
 {
   mpu9250_raw_data_t tmp;
 
-  if (_mpu_get_gyro_raw(&tmp.x, &tmp.y, &tmp.z) == 0)
+  if (_mpu9250_get_acce_raw(&tmp.x, &tmp.y, &tmp.z) == 0)
   {
     buf->x = ((float)tmp.x) * MPU9250_ACCE_16G_SEN;
     buf->y = ((float)tmp.y) * MPU9250_ACCE_16G_SEN;

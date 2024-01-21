@@ -89,7 +89,7 @@ uint8_t mpu_set_acce_range(uint8_t range);
 
 uint8_t mpu9250_init(void);
 
-int16_t mpu_get_temperture(void);
+int16_t mpu9250_get_temperture(void);
 uint8_t mpu9250_get_gyro(mpu9250_data_t *buf);
 uint8_t mpu9250_get_acce(mpu9250_data_t *buf);
 uint8_t mpu9250_get_mag(mpu9250_data_t *buf);

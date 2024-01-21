@@ -48,6 +48,8 @@ void mpu9250(ULONG thread_input)
   mpu9250_data_t mpu9250_data;
   sensor_imu_t sensor_imu;
   sensor_mag_t sensor_mag;
+  memset(&sensor_imu, 0, sizeof(sensor_imu_t));
+  memset(&sensor_mag, 0, sizeof(sensor_mag_t));
   while (1)
   {
     mpu9250_get_gyro(&mpu9250_data);
@@ -62,7 +64,10 @@ void mpu9250(ULONG thread_input)
     sensor_mag.x = mpu9250_data.x;
     sensor_mag.y = mpu9250_data.y;
     sensor_mag.z = mpu9250_data.z;
-    tx_thread_sleep(1);
+    printf("acce: %.2f %.2f %.2f, gyro: %.4f %.4f %.4f\n", sensor_imu.acce[0], sensor_imu.acce[1], sensor_imu.acce[2],
+           sensor_imu.gyro[0], sensor_imu.gyro[1], sensor_imu.gyro[2]);
+
+    tx_thread_sleep(2);
   }
 }
 
