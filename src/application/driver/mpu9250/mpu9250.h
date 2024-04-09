@@ -74,9 +74,7 @@ typedef struct mpu9250_raw_data_s
 
 typedef struct mpu9250_data_s
 {
-    float x;
-    float y;
-    float z;
+    float data[3];
 } mpu9250_data_t;
 
 uint8_t mpu_write_byte(uint8_t addr, uint8_t reg, uint8_t data);

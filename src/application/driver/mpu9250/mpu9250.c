@@ -277,9 +277,9 @@ uint8_t mpu9250_get_gyro(mpu9250_data_t *buf)
 
   if (_mpu9250_get_gyro_raw(&tmp.x, &tmp.y, &tmp.z) == 0)
   {
-    buf->x = ((float)tmp.x) * MPU9250_GYRO_2000_SEN;
-    buf->y = ((float)tmp.y) * MPU9250_GYRO_2000_SEN;
-    buf->z = ((float)tmp.z) * MPU9250_GYRO_2000_SEN;
+    buf->data[0] = ((float)tmp.x) * MPU9250_GYRO_2000_SEN;
+    buf->data[1] = ((float)tmp.y) * MPU9250_GYRO_2000_SEN;
+    buf->data[2] = ((float)tmp.z) * MPU9250_GYRO_2000_SEN;
     return 0;
   }
   return 1;
@@ -295,9 +295,9 @@ uint8_t mpu9250_get_acce(mpu9250_data_t *buf)
 
   if (_mpu9250_get_acce_raw(&tmp.x, &tmp.y, &tmp.z) == 0)
   {
-    buf->x = ((float)tmp.x) * MPU9250_ACCE_16G_SEN;
-    buf->y = ((float)tmp.y) * MPU9250_ACCE_16G_SEN;
-    buf->z = ((float)tmp.z) * MPU9250_ACCE_16G_SEN;
+    buf->data[0] = ((float)tmp.x) * MPU9250_ACCE_16G_SEN;
+    buf->data[1] = ((float)tmp.y) * MPU9250_ACCE_16G_SEN;
+    buf->data[2] = ((float)tmp.z) * MPU9250_ACCE_16G_SEN;
     return 0;
   }
   return 1;
@@ -313,9 +313,9 @@ uint8_t mpu9250_get_mag(mpu9250_data_t *buf)
 
   if (_mpu9250_get_mag_raw(&tmp.x, &tmp.y, &tmp.z) == 0)
   {
-    buf->x = ((float)tmp.x) * 0.15;
-    buf->y = ((float)tmp.y) * 0.15;
-    buf->z = ((float)tmp.z) * 0.15;
+    buf->data[0] = ((float)tmp.x) * 0.15;
+    buf->data[1] = ((float)tmp.y) * 0.15;
+    buf->data[2] = ((float)tmp.z) * 0.15;
     return 0;
   }
   return 1;

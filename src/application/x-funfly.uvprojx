@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F411xE</Define>
               <Undefine></Undefine>
-              <IncludePath>..\application;..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Inc;..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Inc\Legacy;..\lib\STM32Cube_FW_F4_V1.28.0\CMSIS\Device\ST\STM32F4xx\Include;..\lib\STM32Cube_FW_F4_V1.28.0\CMSIS\Include;..\..\rtos\threadx\common\inc;..\..\rtos\threadx\ports\cortex_m4\ac6\inc;.\driver\mpu9250;.\system\driver\i2c;.\system</IncludePath>
+              <IncludePath>..\application;..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Inc;..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Inc\Legacy;..\lib\STM32Cube_FW_F4_V1.28.0\CMSIS\Device\ST\STM32F4xx\Include;..\lib\STM32Cube_FW_F4_V1.28.0\CMSIS\Include;..\..\rtos\threadx\common\inc;..\..\rtos\threadx\ports\cortex_m4\ac6\inc;.\driver\mpu9250;.\system;.\driver\software_i2c;.\module\imu;.\module\thread</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -407,11 +407,6 @@
               <FileName>usart.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_threadx_rtos.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\app_threadx_rtos.c</FilePath>
             </File>
             <File>
               <FileName>tx_initialize_low_level.S</FileName>
@@ -1761,12 +1756,12 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>sys/driver/i2c</GroupName>
+          <GroupName>driver/software_i2c</GroupName>
           <Files>
             <File>
               <FileName>i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\system\driver\i2c\i2c.c</FilePath>
+              <FilePath>.\driver\software_i2c\i2c.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1777,6 +1772,26 @@
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\system\delay.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>module/imu</GroupName>
+          <Files>
+            <File>
+              <FileName>imu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\module\imu\imu.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>module/thread</GroupName>
+          <Files>
+            <File>
+              <FileName>app_threadx_rtos.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\module\thread\app_threadx_rtos.c</FilePath>
             </File>
           </Files>
         </Group>
