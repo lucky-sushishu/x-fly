@@ -63,6 +63,7 @@ int main(void)
   /* Add your application code here */
 	MX_GPIO_Init();
 	MX_USART1_UART_Init();
+  printf("********************X-FUNFLY********************\r\n");
 	
 	/* ThreadX entry */
 	tx_kernel_enter();
