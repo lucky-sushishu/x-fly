@@ -8,6 +8,7 @@ UCHAR imu_mag_stack[IMU_MAG_STACKSIZE];
 static sensor_imu_t sensor_imu;
 static float acce_bais[3], gyro_bais[3];
 static float acce_roll = 0, acce_pitch = 0, gyro_roll = 0, gyro_pitch = 0;
+static float roll_0 = 0, pitch_0 = 0;
 
 static void compute_imu_bais(void)
 {
@@ -44,6 +45,7 @@ void imu_mag_entry(ULONG thread_input)
 {
   if (mpu9250_init() != 0)
   {
+    /* TODO : give led a message display imu init error */
     printf("[sensor]: mpu9250 init error\n");
     return;
   }
@@ -57,6 +59,17 @@ void imu_mag_entry(ULONG thread_input)
   compute_imu_bais();
   printf("bais: acce: %f %f %f, gyro: %f %f %f\r\n", 
           acce_bais[0], acce_bais[1], acce_bais[2], gyro_bais[0], gyro_bais[1], gyro_bais[2]);
+
+  /* 从加速度数据得到初始角度 */
+  mpu9250_get_acce((mpu9250_data_t *)&sensor_imu.acce);
+  ax = -(sensor_imu.acce[1] - acce_bais[1]);
+  ay = -(sensor_imu.acce[0] - acce_bais[0]);
+  az = -(sensor_imu.acce[2] - acce_bais[2]);
+  roll_0 = atan2(-ay, -az) * 57.3f;
+  pitch_0 = atan2(ax, sqrt(ay*ay + az*az)) * 57.3f;
+
+  gyro_roll += roll_0;
+  gyro_pitch += pitch_0;
 
   while (1)
   {
