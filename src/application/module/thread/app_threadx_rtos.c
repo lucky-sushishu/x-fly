@@ -5,6 +5,7 @@
 #include "tx_api.h"
 #include "gpio.h"
 #include "imu.h"
+#include "communication.h"
 
 #define LED_PRIO 15
 #define LED_STACKSIZE 1024
@@ -29,4 +30,7 @@ void tx_application_define(void *first_unused_memory)
   tx_thread_create(&imu_mag_tcb, "imu_mag", imu_mag_entry, 0,
                                 &imu_mag_stack[0], IMU_MAG_STACKSIZE,
                                 IMU_MAG_PRIO, IMU_MAG_PRIO, TX_NO_TIME_SLICE, TX_AUTO_START);
+  tx_thread_create(&communication_tcb, "communication", communication_entry, 0,
+                                &communication_stack[0], COMMUNICATION_STACKSIZE,
+                                COMMUNICATION_PRIO, COMMUNICATION_PRIO, TX_NO_TIME_SLICE, TX_AUTO_START);
 }

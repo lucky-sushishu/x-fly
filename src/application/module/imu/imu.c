@@ -45,12 +45,15 @@ void imu_mag_entry(ULONG thread_input)
 
     MahonyAHRSupdateIMU(gx, gy, gz, ax, ay, az);
 
-    if(count++ % 250 == 0)
-    {
-      printf("ax:%f, ay:%f, az:%f.. gx:%f, gy:%f, gz:%f\r\n", ax, ay, az, gx, gy, gz);
-      q2euler(q0, q1, q2, q3, &roll, &pitch, &yaw);
-      printf("roll:%f, pitch:%f yaw:%f\r\n", roll * 57.3, pitch * 57.3, yaw * 57.3);
-    }
+    q2euler(q0, q1, q2, q3, &roll, &pitch, &yaw);
+    
+
+    // if(count++ % 250 == 0)
+    // {
+    //   printf("ax:%f, ay:%f, az:%f.. gx:%f, gy:%f, gz:%f\r\n", ax, ay, az, gx, gy, gz);
+    //   q2euler(q0, q1, q2, q3, &roll, &pitch, &yaw);
+    //   printf("roll:%f, pitch:%f yaw:%f\r\n", roll * 57.3, pitch * 57.3, yaw * 57.3);
+    // }
 
     /* TODO : achieve more precise frequency */
 
