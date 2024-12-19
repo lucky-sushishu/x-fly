@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "communication.h": "c",
+        "imu.h": "c",
+        "tx_api.h": "c",
+        "ano.h": "c"
+    }
+}

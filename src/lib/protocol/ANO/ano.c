@@ -40,7 +40,7 @@ uint8_t* ano_pack_data(uint8_t d_addr, enum ano_id id, uint8_t data_length, uint
     ano_packet[3] = data_length;
     memcpy(&ano_packet[4], data, data_length);
 
-    ano_check_t ano_check;
+    ano_check_t ano_check = {0};
     _ano_check(ano_packet, &ano_check);
 
     ano_packet[4 + data_length] = ano_check.sum_check;

@@ -25,8 +25,13 @@ typedef unsigned int uint32_t;
 
 #define ANO_ATTITUDE_EULER_LENGTH 7
 
+#define ANO_PARAM_READ_1_LENGTH 2
+#define ANO_PARAM_READ_2_LENGTH 4
+
 enum ano_id {
     ATTITUDE_EULER = 0x03,
+
+    PARAM_READ = 0xE1,
 };
 
 typedef struct ano_check_s {
@@ -38,8 +43,18 @@ typedef struct attitude_euler_s {
     int16_t roll;
     int16_t pitch;
     int16_t yaw;
+    int16_t yaw_1;
     int8_t fusion_status;
 } attitude_euler_t;
+
+typedef struct param_read_1_s {
+    uint16_t param_id;
+} param_read_1_t;
+
+typedef struct param_read_2_s {
+    uint16_t param_id_start;
+    uint16_t read_num;
+} param_read_2_t;
 
 ano_res_t ano_check(uint8_t* buffer);
 uint8_t* ano_pack_data(uint8_t d_addr, enum ano_id id, uint8_t data_length, uint8_t* data);

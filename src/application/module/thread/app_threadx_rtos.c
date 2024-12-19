@@ -33,4 +33,6 @@ void tx_application_define(void *first_unused_memory)
   tx_thread_create(&communication_tcb, "communication", communication_entry, 0,
                                 &communication_stack[0], COMMUNICATION_STACKSIZE,
                                 COMMUNICATION_PRIO, COMMUNICATION_PRIO, TX_NO_TIME_SLICE, TX_AUTO_START);
+  /* Create the message imu queue shared by imu_mag and communication.  */
+    tx_queue_create(&queue_imu, "queue imu", 3*TX_1_ULONG, queue_imu_area, 3*sizeof(float)*IMU_QUEUE_SIZE);
 }

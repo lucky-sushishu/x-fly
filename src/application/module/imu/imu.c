@@ -1,25 +1,28 @@
 #include "imu.h"
-#include "mpu9250.h"
-#include "math.h"
-#include "MahonyAHRS.h"
 
+/* Define the thread */
 TX_THREAD imu_mag_tcb;
 UCHAR imu_mag_stack[IMU_MAG_STACKSIZE];
+
+/* Define the imu queue */
+TX_QUEUE queue_imu;
+UCHAR queue_imu_area[3*sizeof(float)*IMU_QUEUE_SIZE];
 
 static sensor_imu_t sensor_imu;
 static float acce_bais[3], gyro_bais[3];
 
-static float roll = 0.0f, pitch = 0.0f, yaw = 0.0f;
-
+/* Function declaration */
 void compute_imu_bais(void);
 void q2euler(float q0, float q1, float q2, float q3, float *roll, float *pitch, float *yaw);
 
 void imu_mag_entry(ULONG thread_input)
 {
   /* init */
+  UINT status;
   float ax, ay, az, gx, gy, gz;
+  euler_rad_t euler_rad = {0};
 
-  int count = 0;
+  // int count = 0;
 
   if (mpu9250_init() != 0)
   {
@@ -45,14 +48,14 @@ void imu_mag_entry(ULONG thread_input)
 
     MahonyAHRSupdateIMU(gx, gy, gz, ax, ay, az);
 
-    q2euler(q0, q1, q2, q3, &roll, &pitch, &yaw);
+    q2euler(q0, q1, q2, q3, &euler_rad.roll, &euler_rad.pitch, &euler_rad.yaw);
     
+    status =  tx_queue_send(&queue_imu, &euler_rad, TX_WAIT_FOREVER);
 
     // if(count++ % 250 == 0)
     // {
     //   printf("ax:%f, ay:%f, az:%f.. gx:%f, gy:%f, gz:%f\r\n", ax, ay, az, gx, gy, gz);
-    //   q2euler(q0, q1, q2, q3, &roll, &pitch, &yaw);
-    //   printf("roll:%f, pitch:%f yaw:%f\r\n", roll * 57.3, pitch * 57.3, yaw * 57.3);
+    //   printf("roll:%f, pitch:%f yaw:%f\r\n", euler_rad.roll, euler_rad.pitch, euler_rad.yaw);
     // }
 
     /* TODO : achieve more precise frequency */
