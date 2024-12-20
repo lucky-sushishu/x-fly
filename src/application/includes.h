@@ -15,4 +15,8 @@
 #include "mpu9250.h"
 
 
+/* Define rtos event flags */
+#define IMU_INIT_SUCCEED (0x1 << 0)
+#define IMU_INIT_ERROR   (0x1 << 1)
+
 #endif

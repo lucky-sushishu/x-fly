@@ -8,6 +8,9 @@ UCHAR imu_mag_stack[IMU_MAG_STACKSIZE];
 TX_QUEUE queue_imu;
 UCHAR queue_imu_area[3*sizeof(float)*IMU_QUEUE_SIZE];
 
+/* Define event flags group */
+TX_EVENT_FLAGS_GROUP event_flags_led;
+
 static sensor_imu_t sensor_imu;
 static float acce_bais[3], gyro_bais[3];
 
@@ -26,9 +29,14 @@ void imu_mag_entry(ULONG thread_input)
 
   if (mpu9250_init() != 0)
   {
-    /* TODO : give led a message display imu init error */
-    printf("[sensor]: mpu9250 init error\n");
+    /* Set event flag imu to wakeup thread led.  */
+    status =  tx_event_flags_set(&event_flags_led, IMU_INIT_ERROR, TX_OR);
     return;
+  }
+  else
+  {
+    /* Set event flag imu to wakeup thread led.  */
+    status =  tx_event_flags_set(&event_flags_led, IMU_INIT_SUCCEED, TX_OR);
   }
 
   compute_imu_bais();

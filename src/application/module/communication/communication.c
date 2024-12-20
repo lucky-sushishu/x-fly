@@ -24,7 +24,7 @@ void communication_entry(ULONG thread_input)
         attitude_euler.fusion_status = 5;
 
         uint8_t *data = ano_pack_data(ANO_BROADCAST_ADDR, ATTITUDE_EULER, ANO_ATTITUDE_EULER_LENGTH, (uint8_t* )&attitude_euler);
-        HAL_UART_Transmit(&huart1, data, data[3] + ANO_ELSE_DATA_PACKET_LENGTH, 5);
+        // HAL_UART_Transmit(&huart1, data, data[3] + ANO_ELSE_DATA_PACKET_LENGTH, 5);
 
         free(data);
     }

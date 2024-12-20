@@ -1,6 +1,7 @@
 #ifndef _IMU_H_
 #define _IMU_H_
 
+#include "includes.h"
 #include "tx_api.h"
 
 #include "mpu9250.h"
@@ -17,6 +18,7 @@ extern TX_THREAD imu_mag_tcb;
 extern UCHAR imu_mag_stack[IMU_MAG_STACKSIZE];
 extern TX_QUEUE queue_imu;
 extern UCHAR queue_imu_area[3*sizeof(float)*IMU_QUEUE_SIZE];
+extern TX_EVENT_FLAGS_GROUP event_flags_led;
 
 typedef struct sensor_imu_s
 {
