@@ -93,6 +93,7 @@ void led_entry(ULONG thread_input)
 
   while (1)
   {
+    /* TODO: led display uav status */
     tx_thread_sleep(100);
   }
 }

@@ -18,12 +18,17 @@
 #define MAG_CNTL1 0X0A    // 控制寄存器1
 #define MAG_CNTL2 0X0B    // 控制寄存器2
 
-#define MAG_HXL 0X03
-#define MAG_HXH 0X04
-#define MAG_HYL 0X05
-#define MAG_HYH 0X06
-#define MAG_HZL 0X07
-#define MAG_HZH 0X08
+#define MAG_ST1  0x02
+#define MAG_HXL  0X03
+#define MAG_HXH  0X04
+#define MAG_HYL  0X05
+#define MAG_HYH  0X06
+#define MAG_HZL  0X07
+#define MAG_HZH  0X08
+#define MAG_ST2  0x09
+#define MAG_ASAX 0x10
+#define MAG_ASAY 0x11
+#define MAG_ASAZ 0x12
 
 // MPU9250的寄存器地址
 #define MPU_SAMPLE_RATE_REG 0X19 // 采样频率寄存器

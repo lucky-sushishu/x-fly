@@ -10,6 +10,9 @@
 
 #include "ano.h"
 
+#define G (9.81f)
+#define MAG (50.0f)
+
 #define IMU_MAG_PRIO 14
 #define IMU_MAG_STACKSIZE 1024
 #define IMU_QUEUE_SIZE 50

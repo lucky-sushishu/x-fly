@@ -3,6 +3,8 @@
 TX_SEMAPHORE tx_sdriver_input_semaphore;
 TX_SEMAPHORE tx_sdriver_output_semaphore;
 
+uint8_t asax = 0, asay = 0, asaz = 0;
+
 uint8_t mpu_read_byte(uint8_t addr, uint8_t reg)
 {
   uint8_t res = 0;
@@ -190,7 +192,14 @@ uint8_t mpu9250_init(void)
   res = mpu_read_byte(MAG_ADDR, MAG_WHO_AM_I);
   if (res == AK8963_ID)
   {
-    mpu_write_byte(MAG_ADDR, MAG_CNTL1, 0x11); // 设置AK8963为单次测试模式
+    mpu_read_len(MAG_ADDR, MAG_ASAX, 1, &asax);
+    mpu_read_len(MAG_ADDR, MAG_ASAY, 1, &asay);
+    mpu_read_len(MAG_ADDR, MAG_ASAZ, 1, &asaz);
+    asax = (((asax- 128) * 0.5) / 128) + 1;
+    asay = (((asay- 128) * 0.5) / 128) + 1;
+    asaz = (((asaz- 128) * 0.5) / 128) + 1;
+
+    mpu_write_byte(MAG_ADDR, MAG_CNTL1, 0x01); // 设置AK8963为单次测试模式
   }
   else
   {
@@ -255,15 +264,24 @@ uint8_t _mpu9250_get_acce_raw(int16_t *ax, int16_t *ay, int16_t *az)
  */
 uint8_t _mpu9250_get_mag_raw(int16_t *mx, int16_t *my, int16_t *mz)
 {
-  uint8_t buf[6], res;
-  res = mpu_read_len(MAG_ADDR, MAG_HXL, 6, buf);
+  uint8_t buf[6] = {0}, res = 1;
+  
+
+  uint8_t st1 = 0;
+  mpu_read_len(MAG_ADDR, MAG_ST1, 1, &st1);
+  if(st1 & 0x01)
+  {
+    res = mpu_read_len(MAG_ADDR, MAG_HXL, 6, buf);
+  }
+
   if (res == 0)
   {
-    *mx = ((uint16_t)buf[1] << 8) | buf[0];
-    *my = ((uint16_t)buf[3] << 8) | buf[2];
-    *mz = ((uint16_t)buf[5] << 8) | buf[4];
+    *mx = (((uint16_t)buf[1] << 8) | buf[0]) * asax;
+    *my = (((uint16_t)buf[3] << 8) | buf[2]) * asay;
+    *mz = (((uint16_t)buf[5] << 8) | buf[4]) * asaz;
   }
-  mpu_write_byte(MAG_ADDR, MAG_CNTL1, 0x11); // AK8963读完之后都需要重新设置为单次测试模式
+  mpu_write_byte(MAG_ADDR, MAG_CNTL1, 0x01); // AK8963读完之后都需要重新设置为单次测试模式
+
   return res;
 }
 
