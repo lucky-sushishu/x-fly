@@ -7,9 +7,10 @@
 /* 板级驱动 */
 #include "gpio.h"
 #include "usart.h"
+#include "i2c.h"
 
 /* sys文件 */
-#include "i2c.h"
+#include "software_i2c.h"
 
 /* 外部驱动 */
 #include "mpu9250.h"

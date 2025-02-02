@@ -3,6 +3,13 @@
         "communication.h": "c",
         "imu.h": "c",
         "tx_api.h": "c",
-        "ano.h": "c"
+        "ano.h": "c",
+        "main.h": "c",
+        "includes.h": "c",
+        "dma.h": "c",
+        "i2c.h": "c",
+        "software_i2c.h": "c",
+        "mpu9250.h": "c",
+        "usart.h": "c"
     }
 }

@@ -1,5 +1,5 @@
-#ifndef __I2C_H
-#define __I2C_H
+#ifndef _SFTWARE_I2C_H_
+#define _SFTWARE_I2C_H_
 
 #include "stm32f4xx_hal.h"
 #include "delay.h"
@@ -25,7 +25,12 @@ void i2c_ack(void);
 void i2c_nack(void);
 
 
-void i2c_send_byte(uint8_t SendByte);
-uint8_t i2c_read_byte(uint8_t ack);
+void i2c_send(uint8_t SendByte);
+uint8_t i2c_read(uint8_t ack);
+
+uint8_t i2c_write_byte(uint8_t addr, uint8_t reg, uint8_t data);
+uint8_t i2c_read_byte(uint8_t addr, uint8_t reg);
+uint8_t i2c_read_len(uint8_t addr, uint8_t reg, uint8_t len, uint8_t *buf);
+uint8_t i2c_write_len(uint8_t addr, uint8_t reg, uint8_t len, uint8_t *buf);
 
 #endif

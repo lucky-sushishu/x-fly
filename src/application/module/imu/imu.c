@@ -28,22 +28,27 @@ void imu_mag_entry(ULONG thread_input)
 
   int count = 0;
 
+  #if 1
   if (mpu9250_init() != 0)
   {
+		printf("imu error\n");
     /* Set event flag imu to wakeup thread led.  */
     status =  tx_event_flags_set(&event_flags_led, IMU_INIT_ERROR, TX_OR);
     return;
   }
   else
   {
+    printf("imu ok\n");
     /* Set event flag imu to wakeup thread led.  */
     status =  tx_event_flags_set(&event_flags_led, IMU_INIT_SUCCEED, TX_OR);
   }
 
   compute_imu_bais();
 
+  #endif
   while (1)
   {
+    #if 1
     mpu9250_get_acce((mpu9250_data_t *)&sensor_imu.acce);
     mpu9250_get_gyro((mpu9250_data_t *)&sensor_imu.gyro);
 
@@ -78,7 +83,7 @@ void imu_mag_entry(ULONG thread_input)
     }
 
     /* TODO : achieve more precise frequency */
-
+    #endif
     tx_thread_sleep(2);
   }
 }

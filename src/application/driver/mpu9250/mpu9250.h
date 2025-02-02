@@ -3,8 +3,9 @@
 
 #include "stm32f4xx_hal.h"
 #include "tx_api.h"
-#include "i2c.h"
+#include "software_i2c.h"
 #include "usart.h"
+#include "i2c.h"
 
 #define MPU9250_ADDR 0X69 // MPU9250的器件IIC地址
 #define MPU9250_ID 0X71   // MPU9250的器件ID
@@ -82,10 +83,6 @@ typedef struct mpu9250_data_s
     float data[3];
 } mpu9250_data_t;
 
-uint8_t mpu_write_byte(uint8_t addr, uint8_t reg, uint8_t data);
-uint8_t mpu_read_byte(uint8_t addr, uint8_t reg);
-uint8_t mpu_read_len(uint8_t addr, uint8_t reg, uint8_t len, uint8_t *buf);
-uint8_t mpu_write_len(uint8_t addr, uint8_t reg, uint8_t len, uint8_t *buf);
 
 uint8_t mpu_set_gyro_range(uint8_t range);
 uint8_t mpu_set_acce_range(uint8_t range);

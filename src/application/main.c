@@ -20,6 +20,8 @@
 #include "main.h"
 #include "includes.h"
 
+//uint8_t who_ai_i = 0;
+
 /** @addtogroup STM32F4xx_HAL_Examples
   * @{
   */
@@ -34,7 +36,7 @@
 /* Private variables ---------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
-static void Error_Handler(void);
+// void Error_Handler(void);
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -61,12 +63,13 @@ int main(void)
   SystemClock_Config();
 
   /* Add your application code here */
-	MX_GPIO_Init();
-	MX_USART1_UART_Init();
+  MX_GPIO_Init();
+  MX_USART1_UART_Init();
+  MX_I2C1_Init();
   printf("********************X-FUNFLY********************\r\n");
 	
-	/* ThreadX entry */
-	tx_kernel_enter();
+  /* ThreadX entry */
+  tx_kernel_enter();
 
   /* Infinite loop */
   while (1)
@@ -135,11 +138,12 @@ static void SystemClock_Config(void)
   * @param  None
   * @retval None
   */
-static void Error_Handler(void)
+void Error_Handler(void)
 {
   /* User may add here some code to deal with this error */
   while(1)
   {
+    printf("Error\n");
   }
 }
 
