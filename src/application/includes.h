@@ -20,4 +20,8 @@
 #define IMU_INIT_SUCCEED (0x1 << 0)
 #define IMU_INIT_ERROR   (0x1 << 1)
 
+/* Conifg */
+#define USE_EULER_RAD 0
+
+
 #endif

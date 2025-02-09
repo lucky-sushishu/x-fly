@@ -24,12 +24,14 @@ typedef unsigned int uint32_t;
 
 
 #define ANO_ATTITUDE_EULER_LENGTH 7
+#define ANO_ATTITUDE_Q_LENGTH 9
 
 #define ANO_PARAM_READ_1_LENGTH 2
 #define ANO_PARAM_READ_2_LENGTH 4
 
 enum ano_id {
     ATTITUDE_EULER = 0x03,
+    ATTITUDE_Q = 0x04,
 
     PARAM_READ = 0xE1,
 };
@@ -46,6 +48,14 @@ typedef struct attitude_euler_s {
     int16_t yaw_1;
     int8_t fusion_status;
 } attitude_euler_t;
+
+typedef struct attitude_q_s {
+    int16_t v0;
+    int16_t v1;
+    int16_t v2;
+    int16_t v3;
+    int8_t fusion_status;
+} attitude_q_t;
 
 typedef struct param_read_1_s {
     uint16_t param_id;

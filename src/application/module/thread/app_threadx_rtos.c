@@ -6,6 +6,7 @@
 #include "gpio.h"
 #include "imu.h"
 #include "communication.h"
+// #include "includes.h"
 
 #define LED_PRIO 15
 #define LED_STACKSIZE 1024
@@ -113,7 +114,11 @@ void tx_application_define(void *first_unused_memory)
                                 COMMUNICATION_PRIO, COMMUNICATION_PRIO, TX_NO_TIME_SLICE, TX_AUTO_START);
 
   /* Create the message imu queue shared by imu_mag and communication.  */
+  #if USE_EULER_RAD
   tx_queue_create(&queue_imu, "queue imu", 3*TX_1_ULONG, queue_imu_area, 3*sizeof(float)*IMU_QUEUE_SIZE);
+  #else
+  tx_queue_create(&queue_imu, "queue imu", 4*TX_1_ULONG, queue_imu_area, 4*sizeof(float)*IMU_QUEUE_SIZE);
+  #endif
 
   /* Create the event flags group used by threads imu_mag and led.  */
   tx_event_flags_create(&event_flags_led, "event flags led");

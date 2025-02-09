@@ -24,7 +24,11 @@ void imu_mag_entry(ULONG thread_input)
   /* init */
   UINT status;
   float ax, ay, az, gx, gy, gz, mx, my, mz;
+  #if USE_EULER_RAD
   euler_rad_t euler_rad = {0};
+  #else
+  quaternion_t quaternion = {0};
+  #endif
 
   int count = 0;
 
@@ -71,9 +75,17 @@ void imu_mag_entry(ULONG thread_input)
 
     MahonyAHRSupdate(gx, gy, gz, ax, ay, az, mx, mz, my);
 
+    #if USE_EULER_RAD
     q2euler(q0, q1, q2, q3, &euler_rad.roll, &euler_rad.pitch, &euler_rad.yaw);
     
     status =  tx_queue_send(&queue_imu, &euler_rad, TX_WAIT_FOREVER);
+    #else
+    quaternion.v0 = q0;
+    quaternion.v1 = q1;
+    quaternion.v2 = q2;
+    quaternion.v3 = q3;
+    status = tx_queue_send(&queue_imu, &quaternion, TX_WAIT_FOREVER);
+    #endif
 
     if(count++ % 250 == 0)
     {

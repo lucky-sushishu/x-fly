@@ -14,7 +14,7 @@
 #define MAG (50.0f)
 
 #define IMU_MAG_PRIO 14
-#define IMU_MAG_STACKSIZE 1024
+#define IMU_MAG_STACKSIZE 2048
 #define IMU_QUEUE_SIZE 50
 
 extern TX_THREAD imu_mag_tcb;
@@ -39,6 +39,13 @@ typedef struct euler_rad_s {
   float pitch;
   float yaw;
 } euler_rad_t;
+
+typedef struct quaternion_s {
+  float v0;
+  float v1;
+  float v2;
+  float v3;
+} quaternion_t;
 
 void imu_mag_entry(ULONG thread_input);
 
