@@ -10,6 +10,7 @@
         "i2c.h": "c",
         "software_i2c.h": "c",
         "mpu9250.h": "c",
-        "usart.h": "c"
+        "usart.h": "c",
+        "madgwickahrs.h": "c"
     }
 }

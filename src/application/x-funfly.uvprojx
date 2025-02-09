@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F411xE</Define>
               <Undefine></Undefine>
-              <IncludePath>..\application;..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Inc;..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Inc\Legacy;..\lib\STM32Cube_FW_F4_V1.28.0\CMSIS\Device\ST\STM32F4xx\Include;..\lib\STM32Cube_FW_F4_V1.28.0\CMSIS\Include;..\..\rtos\threadx\common\inc;..\..\rtos\threadx\ports\cortex_m4\ac6\inc;.\driver\mpu9250;.\system;.\driver\software_i2c;.\module\imu;.\module\thread;..\lib\algorithm\MahonyAHRS;..\lib\protocol\ANO;.\module\communication</IncludePath>
+              <IncludePath>..\application;..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Inc;..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Inc\Legacy;..\lib\STM32Cube_FW_F4_V1.28.0\CMSIS\Device\ST\STM32F4xx\Include;..\lib\STM32Cube_FW_F4_V1.28.0\CMSIS\Include;..\..\rtos\threadx\common\inc;..\..\rtos\threadx\ports\cortex_m4\ac6\inc;.\driver\mpu9250;.\system;.\driver\software_i2c;.\module\imu;.\module\thread;..\lib\algorithm\MahonyAHRS;..\lib\algorithm\MadgwickAHRS;..\lib\protocol\ANO;.\module\communication</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1809,6 +1809,9 @@
               <FilePath>..\lib\algorithm\MahonyAHRS\MahonyAHRS.c</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>lib/algorithm/MadgwickAHRS</GroupName>
         </Group>
         <Group>
           <GroupName>lib/protocol/ANO</GroupName>

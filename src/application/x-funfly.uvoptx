@@ -3611,7 +3611,7 @@
 
   <Group>
     <GroupName>lib/algorithm/MahonyAHRS</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -3630,13 +3630,21 @@
   </Group>
 
   <Group>
+    <GroupName>lib/algorithm/MadgwickAHRS</GroupName>
+    <tvExp>1</tvExp>
+    <tvExpOptDlg>0</tvExpOptDlg>
+    <cbSel>0</cbSel>
+    <RteFlg>0</RteFlg>
+  </Group>
+
+  <Group>
     <GroupName>lib/protocol/ANO</GroupName>
     <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
-      <GroupNumber>13</GroupNumber>
+      <GroupNumber>14</GroupNumber>
       <FileNumber>275</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
@@ -3656,7 +3664,7 @@
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
     <File>
-      <GroupNumber>14</GroupNumber>
+      <GroupNumber>15</GroupNumber>
       <FileNumber>276</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
