@@ -22,7 +22,8 @@ typedef unsigned char uint8_t;
 typedef unsigned short uint16_t;
 typedef unsigned int uint32_t;
 
-
+#define ANO_IMU_DATA_LENGTH 13
+#define ANO_MAG_BARO_TMP_DATA_LENGTH 14
 #define ANO_ATTITUDE_EULER_LENGTH 7
 #define ANO_ATTITUDE_Q_LENGTH 9
 
@@ -30,8 +31,10 @@ typedef unsigned int uint32_t;
 #define ANO_PARAM_READ_2_LENGTH 4
 
 enum ano_id {
+    IMU_DATA = 0x01,
+    MAG_BARO_TMP_DATA = 0x02,
     ATTITUDE_EULER = 0x03,
-    ATTITUDE_Q = 0x04,
+    ATTITUDE_QUATERNION = 0x04,
 
     PARAM_READ = 0xE1,
 };
@@ -41,6 +44,26 @@ typedef struct ano_check_s {
     uint8_t add_check;
 } ano_check_t;
 
+typedef struct imu_data_s {
+    int16_t acc_x;
+    int16_t acc_y;
+    int16_t acc_z;
+    int16_t gyr_x;
+    int16_t gyr_y;
+    int16_t gyr_z;
+    uint8_t shock_sta;
+} imu_data_t;
+
+typedef struct mag_baro_tmp_data_s {
+    int16_t mag_x;
+    int16_t mag_y;
+    int16_t mag_z;
+    int32_t alt_bar;
+    int16_t tmp;
+    uint8_t bar_sta;
+    uint8_t mag_sta;
+} mag_baro_tmp_data_t;
+
 typedef struct attitude_euler_s {
     int16_t roll;
     int16_t pitch;
@@ -49,13 +72,13 @@ typedef struct attitude_euler_s {
     int8_t fusion_status;
 } attitude_euler_t;
 
-typedef struct attitude_q_s {
+typedef struct attitude_attitude_quaternion_s {
     int16_t v0;
     int16_t v1;
     int16_t v2;
     int16_t v3;
     int8_t fusion_status;
-} attitude_q_t;
+} attitude_quaternion_t;
 
 typedef struct param_read_1_s {
     uint16_t param_id;

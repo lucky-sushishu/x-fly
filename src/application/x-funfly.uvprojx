@@ -313,7 +313,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>2</Optim>
+            <Optim>1</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -1802,16 +1802,16 @@
         </Group>
         <Group>
           <GroupName>lib/algorithm/MahonyAHRS</GroupName>
-          <Files>
-            <File>
-              <FileName>MahonyAHRS.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\lib\algorithm\MahonyAHRS\MahonyAHRS.c</FilePath>
-            </File>
-          </Files>
         </Group>
         <Group>
           <GroupName>lib/algorithm/MadgwickAHRS</GroupName>
+          <Files>
+            <File>
+              <FileName>MadgwickAHRS.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\lib\algorithm\MadgwickAHRS\MadgwickAHRS.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>lib/protocol/ANO</GroupName>

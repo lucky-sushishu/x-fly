@@ -1,11 +1,9 @@
 #include "mpu9250.h"
 
-#define SOFTWARE_IIC_ENABLED 0
+#define SOFTWARE_IIC_ENABLED 1
 
 TX_SEMAPHORE tx_sdriver_input_semaphore;
 TX_SEMAPHORE tx_sdriver_output_semaphore;
-
-uint8_t asax = 0, asay = 0, asaz = 0;
 
 static uint8_t mpu9250_read(uint8_t dev_addr, uint8_t reg_addr, uint8_t *buf, uint8_t size)
 {
@@ -31,9 +29,14 @@ static uint8_t mpu9250_write(uint8_t dev_addr, uint8_t reg_addr, uint8_t *data, 
  */
 uint8_t mpu_set_gyro_range(uint8_t range)
 {
-  uint8_t data = range << 3;
-  mpu9250_write(MPU9250_ADDR, MPU_GYRO_CFG_REG, &data, 1);
-  return 0;
+  uint8_t data1, data2;
+  data1 = range << 3;
+  mpu9250_write(MPU9250_ADDR, MPU_GYRO_CFG_REG, &data1, 1);
+  mpu9250_read(MPU9250_ADDR, MPU_GYRO_CFG_REG, &data2, 1);
+  if(data1 == data2)
+    return 0;
+  else
+    return 1;
 }
 
 /**
@@ -115,7 +118,7 @@ uint8_t mpu9250_init(void)
 
   mpu_set_gyro_range(3);                                 // 设置陀螺仪的量程为±2000deg/s
   mpu_set_acce_range(3);                                 // 设置加速度计的量程为±16G
-  MPU_Set_rate(500);                                     // 设置采样率为500Hz
+  MPU_Set_rate(200);                                     // 设置采样率为500Hz
   data = 0x00;
   mpu9250_write(MPU9250_ADDR, MPU_INT_EN_REG, &data, 1);    // 关闭所有中断
   mpu9250_write(MPU9250_ADDR, MPU_USER_CTRL_REG, &data, 1); // I2C主模式关闭
@@ -126,14 +129,9 @@ uint8_t mpu9250_init(void)
   res = mpu9250_read(MAG_ADDR, MAG_WHO_AM_I, &buf, 1);
   if (buf == AK8963_ID)
   {
-    mpu9250_read(MAG_ADDR, MAG_ASAX, &asax, 1);
-    mpu9250_read(MAG_ADDR, MAG_ASAY, &asay, 1);
-    mpu9250_read(MAG_ADDR, MAG_ASAZ, &asaz, 1);
-    asax = (((asax- 128) * 0.5) / 128) + 1;
-    asay = (((asay- 128) * 0.5) / 128) + 1;
-    asaz = (((asaz- 128) * 0.5) / 128) + 1;
 
-    data = 0x01;
+    data = 0x10 | 0x06;
+    // data = 0x00 | 0x06;
     mpu9250_write(MAG_ADDR, MAG_CNTL1, &data, 1); // 设置AK8963为单次测试模式
   }
   else
@@ -200,7 +198,6 @@ uint8_t _mpu9250_get_acce_raw(int16_t *ax, int16_t *ay, int16_t *az)
 uint8_t _mpu9250_get_mag_raw(int16_t *mx, int16_t *my, int16_t *mz)
 {
   uint8_t buf[6] = {0}, res = 1, data = 0;
-  
 
   uint8_t st1 = 0;
   mpu9250_read(MAG_ADDR, MAG_ST1, &st1, 1);
@@ -211,11 +208,13 @@ uint8_t _mpu9250_get_mag_raw(int16_t *mx, int16_t *my, int16_t *mz)
 
   if (res == 0)
   {
-    *mx = (((uint16_t)buf[1] << 8) | buf[0]) * asax;
-    *my = (((uint16_t)buf[3] << 8) | buf[2]) * asay;
-    *mz = (((uint16_t)buf[5] << 8) | buf[4]) * asaz;
+    *mx = (((uint16_t)buf[1] << 8) | buf[0]);
+    *my = (((uint16_t)buf[3] << 8) | buf[2]);
+    *mz = (((uint16_t)buf[5] << 8) | buf[4]);
   }
-  data = 0x01;
+  // printf("%d %d %d \n", *mx, *my, *mz);
+  data = 0x10 | 0x06;
+  // data = 0x00 | 0x06;
   mpu9250_write(MAG_ADDR, MAG_CNTL1, &data, 1); // AK8963读完之后都需要重新设置为单次测试模式
 
   return res;

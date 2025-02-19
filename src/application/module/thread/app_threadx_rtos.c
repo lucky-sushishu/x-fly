@@ -117,7 +117,7 @@ void tx_application_define(void *first_unused_memory)
   #if USE_EULER_RAD
   tx_queue_create(&queue_imu, "queue imu", 3*TX_1_ULONG, queue_imu_area, 3*sizeof(float)*IMU_QUEUE_SIZE);
   #else
-  tx_queue_create(&queue_imu, "queue imu", 4*TX_1_ULONG, queue_imu_area, 4*sizeof(float)*IMU_QUEUE_SIZE);
+  tx_queue_create(&queue_imu, "queue imu", (sizeof(communication_data_t) / 4)*TX_1_ULONG, queue_imu_area, (sizeof(communication_data_t) / 4)*sizeof(float)*IMU_QUEUE_SIZE);
   #endif
 
   /* Create the event flags group used by threads imu_mag and led.  */

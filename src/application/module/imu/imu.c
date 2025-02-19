@@ -22,13 +22,8 @@ void imu_mag_entry(ULONG thread_input)
   UINT status;
   sensor_imu_t sensor_imu = {0};
   sensor_mag_t sensor_mag = {0};
+  communication_data_t communication_data = {0};
   float ax, ay, az, gx, gy, gz, mx, my, mz;
-  #if USE_EULER_RAD
-  euler_rad_t euler_rad = {0};
-  #else
-  quaternion_t quaternion = {0};
-  #endif
-
   int count = 0;
 
   #if 1
@@ -45,7 +40,6 @@ void imu_mag_entry(ULONG thread_input)
   }
 
   compute_gyro_bais();
-  // printf("bais: gx:%f gy:%f gz:%f \n", gyro_bais[0], gyro_bais[1], gyro_bais[2]);
   #endif
 
   while (1)
@@ -55,47 +49,61 @@ void imu_mag_entry(ULONG thread_input)
     mpu9250_get_gyro((mpu9250_data_t *)&sensor_imu.gyro);
 
     /* FRD (right-hand system) */
-    ax = -sensor_imu.acce[1] / G;
-    ay = -sensor_imu.acce[0] / G;
-    az = sensor_imu.acce[2] / G;
-    gx = -(sensor_imu.gyro[1] - gyro_bais[1]);
-    gy = -(sensor_imu.gyro[0] - gyro_bais[0]);
-    gz = -(sensor_imu.gyro[2] - gyro_bais[2]);
+    // ax = -sensor_imu.acce[1] / G;
+    // ay = -sensor_imu.acce[0] / G;
+    // az = sensor_imu.acce[2] / G;
+    // gx = -sensor_imu.gyro[1] * 57.3;
+    // gy = -sensor_imu.gyro[0] * 57.3;
+    // gz = sensor_imu.gyro[2] * 57.3;
+    ax = sensor_imu.acce[0];
+    ay = sensor_imu.acce[1];
+    az = sensor_imu.acce[2];
+    gx = sensor_imu.gyro[0];
+    gy = sensor_imu.gyro[1];
+    gz = sensor_imu.gyro[2];
+
     
     /* 2*10 = 20ms -> 50hz */
-    if(count++ % 10 == 0)
+    if(count++ % 2 == 0)
     {
       mpu9250_get_mag((mpu9250_data_t *)&sensor_mag.data);
-      mx = -sensor_mag.data[0] * 0.01; /* uT -> Gs */
-      my = -sensor_mag.data[1] * 0.01;
+      mx = sensor_mag.data[1] * 0.01; /* uT -> Gs */
+      my = sensor_mag.data[0] * 0.01;
       mz = sensor_mag.data[2] * 0.01;
+      // printf("mx:%f, my:%f, mz:%f\r\n", mx, my, mz);
     }
 
-    MahonyAHRSupdate(gx, gy, gz, ax, ay, az, mx, mz, my);
+    // MahonyAHRSupdateIMU(gx, gy, gz, ax, ay, az);
+    // MahonyAHRSupdate(gx, gy, gz, ax, ay, az, mx, mz, my);
+
+    MadgwickAHRSupdateIMU(gx, gy, gz, ax, ay, az);
     // MadgwickAHRSupdate(gx, gy, gz, ax, ay, az, mx, mz, my);
 
-    #if USE_EULER_RAD
-    q2euler(q0, q1, q2, q3, &euler_rad.roll, &euler_rad.pitch, &euler_rad.yaw);
-    
-    status =  tx_queue_send(&queue_imu, &euler_rad, TX_WAIT_FOREVER);
-    #else
-    quaternion.v0 = q0;
-    quaternion.v1 = q1;
-    quaternion.v2 = q2;
-    quaternion.v3 = q3;
-    status = tx_queue_send(&queue_imu, &quaternion, TX_WAIT_FOREVER);
-    #endif
+    communication_data.imu.acce[0] = -sensor_imu.acce[1];
+    communication_data.imu.acce[1] = -sensor_imu.acce[0];
+    communication_data.imu.acce[2] = sensor_imu.acce[2];
+    communication_data.imu.gyro[0] = gx;
+    communication_data.imu.gyro[1] = gy;
+    communication_data.imu.gyro[2] = gz;
+    communication_data.mag.data[0] = mx;
+    communication_data.mag.data[1] = my;
+    communication_data.mag.data[2] = mz;
+    q2euler(q0, q1, q2, q3, &communication_data.euler_rad.roll, &communication_data.euler_rad.pitch, &communication_data.euler_rad.yaw);
+    communication_data.quaternion.v0 = q0;
+    communication_data.quaternion.v1 = q1;
+    communication_data.quaternion.v2 = q2;
+    communication_data.quaternion.v3 = q3;
+    status = tx_queue_send(&queue_imu, &communication_data, TX_WAIT_FOREVER);
 
-    if(count++ % 250 == 0)
-    {
-      // printf("ax:%f, ay:%f, az:%f.. gx:%f, gy:%f, gz:%f.. ", ax, ay, az, gx, gy, gz);
+    // if(count++ % 250 == 0)
+    // {
+      // printf("ax:%f, ay:%f, az:%f.. gx:%f, gy:%f, gz:%f.. \n", ax, ay, az, gx, gy, gz);
       // printf("mx:%f, my:%f, mz:%f\r\n", mx, my, mz);
-      // printf("roll:%f, pitch:%f yaw:%f\r\n", euler_rad.roll, euler_rad.pitch, euler_rad.yaw);
-    }
+    // }
 
     /* TODO : achieve more precise frequency */
     #endif
-    tx_thread_sleep(2);
+    tx_thread_sleep(5);
   }
 }
 

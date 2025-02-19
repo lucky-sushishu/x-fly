@@ -12,7 +12,7 @@
 
 #include "imu.h"
 
-#define COMMUNICATION_PRIO 15
+#define COMMUNICATION_PRIO 14
 #define COMMUNICATION_STACKSIZE 2048
 extern TX_THREAD communication_tcb;
 extern UCHAR communication_stack[COMMUNICATION_STACKSIZE];
