@@ -423,6 +423,11 @@
               <FileType>1</FileType>
               <FilePath>.\i2c.c</FilePath>
             </File>
+            <File>
+              <FileName>dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\dma.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -1,25 +1,28 @@
 #include "mpu9250.h"
 
-#define SOFTWARE_IIC_ENABLED 1
-
-TX_SEMAPHORE tx_sdriver_input_semaphore;
-TX_SEMAPHORE tx_sdriver_output_semaphore;
+#define IIC_DMA_ENABLED 0
+#define IIC_HARDWARE_ENABLED 1
+#define IIC_SOFTWARE_ENABLED 0
 
 static uint8_t mpu9250_read(uint8_t dev_addr, uint8_t reg_addr, uint8_t *buf, uint8_t size)
 {
-#if SOFTWARE_IIC_ENABLED
-  return i2c_read_len(dev_addr, reg_addr, size, buf);
-#else
+#if IIC_DMA_ENABLED
+  return HAL_I2C_Mem_Read_DMA(&hi2c1, (dev_addr << 1) | 0x00, reg_addr, I2C_MEMADD_SIZE_8BIT, buf, size);
+#elif IIC_HARDWARE_ENABLED
   return HAL_I2C_Mem_Read(&hi2c1, (dev_addr << 1) | 0x00, reg_addr, I2C_MEMADD_SIZE_8BIT, buf, size, 5);
+#else
+  return i2c_read_len(dev_addr, reg_addr, size, buf);
 #endif
 }
 
 static uint8_t mpu9250_write(uint8_t dev_addr, uint8_t reg_addr, uint8_t *data, uint8_t size)
 {
-#if SOFTWARE_IIC_ENABLED
-  return i2c_write_len(dev_addr, reg_addr, size, data);
-#else
+#if IIC_DMA_ENABLED
+  HAL_I2C_Mem_Write_DMA(&hi2c1, (dev_addr << 1) | 0x00, reg_addr, I2C_MEMADD_SIZE_8BIT, data, size);
+#elif IIC_HARDWARE_ENABLED
   return HAL_I2C_Mem_Write(&hi2c1, (dev_addr << 1) | 0x00, reg_addr, I2C_MEMADD_SIZE_8BIT, data, size, 5);
+#else
+  return i2c_write_len(dev_addr, reg_addr, size, data);
 #endif
 }
 
@@ -93,7 +96,7 @@ uint8_t MPU_Set_rate(uint16_t rate)
 uint8_t mpu9250_init(void)
 {
   uint8_t res = 0, data = 0, buf = 0;
-#if SOFTWARE_IIC_ENABLED
+#if IIC_SOFTWARE_ENABLED
   i2c_init();
 #endif
   data = 0x80;
@@ -108,11 +111,13 @@ uint8_t mpu9250_init(void)
     data = 0x03;
     mpu9250_write(MPU9250_ADDR, MPU_PWR_MGMT1_REG, &data, 1);
     mpu9250_read(MPU9250_ADDR, MPU_PWR_MGMT1_REG, &buf, 1);
+    printf("W:0x%02x MGMT1:0x%02x\n", data, buf);
     data = 0x00;
     mpu9250_write(MPU9250_ADDR, MPU_PWR_MGMT2_REG, &data, 1); // 开启陀螺仪和加速度计(on)
   }
   else
   {
+    printf("ADDR:0x%02x\n", buf);
     return 1;
   }
 
@@ -216,6 +221,7 @@ uint8_t _mpu9250_get_mag_raw(int16_t *mx, int16_t *my, int16_t *mz)
   data = 0x10 | 0x06;
   // data = 0x00 | 0x06;
   mpu9250_write(MAG_ADDR, MAG_CNTL1, &data, 1); // AK8963读完之后都需要重新设置为单次测试模式
+  
 
   return res;
 }

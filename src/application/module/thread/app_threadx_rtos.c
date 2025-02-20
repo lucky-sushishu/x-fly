@@ -105,7 +105,7 @@ void tx_application_define(void *first_unused_memory)
                                 &led_stack[0], LED_STACKSIZE,
                                 LED_PRIO, LED_PRIO, TX_NO_TIME_SLICE, TX_AUTO_START);
 
-  tx_thread_create(&imu_mag_tcb, "imu_mag", imu_mag_entry, 0,
+  tx_thread_create(&imu_mag_tcb, "sensor", imu_mag_entry, 0,
                                 &imu_mag_stack[0], IMU_MAG_STACKSIZE,
                                 IMU_MAG_PRIO, IMU_MAG_PRIO, TX_NO_TIME_SLICE, TX_AUTO_START);
 
@@ -113,13 +113,12 @@ void tx_application_define(void *first_unused_memory)
                                 &communication_stack[0], COMMUNICATION_STACKSIZE,
                                 COMMUNICATION_PRIO, COMMUNICATION_PRIO, TX_NO_TIME_SLICE, TX_AUTO_START);
 
-  /* Create the message imu queue shared by imu_mag and communication.  */
-  #if USE_EULER_RAD
-  tx_queue_create(&queue_imu, "queue imu", 3*TX_1_ULONG, queue_imu_area, 3*sizeof(float)*IMU_QUEUE_SIZE);
-  #else
-  tx_queue_create(&queue_imu, "queue imu", (sizeof(communication_data_t) / 4)*TX_1_ULONG, queue_imu_area, (sizeof(communication_data_t) / 4)*sizeof(float)*IMU_QUEUE_SIZE);
-  #endif
+  /* Create the comm message queue shared by imu_mag and communication.  */
+  tx_queue_create(&queue_comm, "comm queue", (sizeof(communication_data_t) / 4)*TX_1_ULONG, queue_imu_area, (sizeof(communication_data_t) / 4)*sizeof(float)*IMU_QUEUE_SIZE);
 
-  /* Create the event flags group used by threads imu_mag and led.  */
-  tx_event_flags_create(&event_flags_led, "event flags led");
+  /* Create the event flags group used by threads sensor and led.  */
+  tx_event_flags_create(&event_flags_led, "led event flags ");
+
+  /* Create the semaphore used by sensor and i2c dma rx transfer completed callback. */
+  tx_semaphore_create(&semaphore_imu, "imu semaphore", 1);
 }

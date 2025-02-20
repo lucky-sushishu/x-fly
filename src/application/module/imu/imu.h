@@ -20,9 +20,27 @@
 
 extern TX_THREAD imu_mag_tcb;
 extern UCHAR imu_mag_stack[IMU_MAG_STACKSIZE];
-extern TX_QUEUE queue_imu;
+extern TX_QUEUE queue_comm;
 extern UCHAR queue_imu_area[3*sizeof(float)*IMU_QUEUE_SIZE];
 extern TX_EVENT_FLAGS_GROUP event_flags_led;
+extern TX_SEMAPHORE semaphore_imu;
+
+typedef struct mpu9250_imu_data_s {
+  uint8_t accel_xout_h;
+  uint8_t accel_xout_l;
+  uint8_t accel_yout_h;
+  uint8_t accel_yout_l;
+  uint8_t accel_zout_h;
+  uint8_t accel_zout_l;
+  uint8_t temp_out_h;
+  uint8_t temp_out_l;
+  uint8_t gyro_xout_h;
+  uint8_t gyro_xout_l;
+  uint8_t gyro_yout_h;
+  uint8_t gyro_yout_l;
+  uint8_t gyro_zout_h;
+  uint8_t gyro_zout_l;
+} mpu9250_imu_data_t;
 
 typedef struct sensor_imu_s
 {

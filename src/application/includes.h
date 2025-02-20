@@ -8,6 +8,7 @@
 #include "gpio.h"
 #include "usart.h"
 #include "i2c.h"
+#include "dma.h"
 
 /* sys文件 */
 #include "software_i2c.h"
