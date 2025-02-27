@@ -35,7 +35,7 @@
 #define MPU_SAMPLE_RATE_REG 0X19 // 采样频率寄存器
 #define MPU_CFG_REG 0X1A         // 配置寄存器
 #define MPU_GYRO_CFG_REG 0X1B    // 陀螺仪配置寄存器
-#define MPU_ACCE_CFG_REG 0X1C    // 加速度计配置寄存器
+#define MPU_ACCL_CFG_REG 0X1C    // 加速度计配置寄存器
 
 #define MPU_FIFO_EN_REG 0X23 // FIFO使能寄存器
 
@@ -43,12 +43,12 @@
 #define MPU_INT_EN_REG 0X38    // 中断使能寄存器
 #define MPU_INT_STA_REG 0X3A   // 中断状态寄存器
 
-#define MPU_ACCEL_XOUT_H 0X3B  // 加速度计X轴寄存器高8位
-#define MPU_ACCEL_XOUT_L 0X3C  // 加速度计X轴寄存器低8位
-#define MPU_ACCEL_YOUT_H 0X3D  // 加速度计Y轴寄存器高8位
-#define MPU_ACCEL_YOUT_L 0X3E  // 加速度计Y轴寄存器低8位
-#define MPU_ACCEL_ZOUT_H 0X3F  // 加速度计Z轴寄存器高8位
-#define MPU_ACCEL_ZOUT_L 0X40  // 加速度计Z轴寄存器低8位
+#define MPU_ACCL_XOUT_H 0X3B  // 加速度计X轴寄存器高8位
+#define MPU_ACCL_XOUT_L 0X3C  // 加速度计X轴寄存器低8位
+#define MPU_ACCL_YOUT_H 0X3D  // 加速度计Y轴寄存器高8位
+#define MPU_ACCL_YOUT_L 0X3E  // 加速度计Y轴寄存器低8位
+#define MPU_ACCL_ZOUT_H 0X3F  // 加速度计Z轴寄存器高8位
+#define MPU_ACCL_ZOUT_L 0X40  // 加速度计Z轴寄存器低8位
 #define MPU_TEMP_OUTH_REG 0X41 // 温度寄存器高8位
 #define MPU_TEMP_OUTL_REG 0X42 // 温度寄存器低8位
 #define MPU_GYRO_XOUT_H 0X43   // 陀螺仪X轴寄存器高8位
@@ -64,7 +64,7 @@
 
 #define MPU_WHO_AM_I 0X75 // 器件ID寄存器
 
-#define MPU9250_ACCE_16G_SEN 0.00478515625f
+#define MPU9250_ACCL_16G_SEN 0.00478515625f
 
 #define MPU9250_GYRO_2000_SEN 0.00106526443603169529841533860381f
 #define MPU9250_GYRO_1000_SEN 0.00053263221801584764920766930190693f
@@ -85,13 +85,13 @@ typedef struct mpu9250_data_s
 
 
 uint8_t mpu_set_gyro_range(uint8_t range);
-uint8_t mpu_set_acce_range(uint8_t range);
+uint8_t mpu_set_accl_range(uint8_t range);
 
 uint8_t mpu9250_init(void);
 
 int16_t mpu9250_get_temperture(void);
 uint8_t mpu9250_get_gyro(mpu9250_data_t *buf);
-uint8_t mpu9250_get_acce(mpu9250_data_t *buf);
+uint8_t mpu9250_get_accl(mpu9250_data_t *buf);
 uint8_t mpu9250_get_mag(mpu9250_data_t *buf);
 
 #endif

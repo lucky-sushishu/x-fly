@@ -15,7 +15,7 @@
 #define MAG (50.0f)
 
 #define IMU_MAG_PRIO 14
-#define IMU_MAG_STACKSIZE 4096
+#define IMU_MAG_STACKSIZE (5 * 1024)
 #define IMU_QUEUE_SIZE 100
 
 extern TX_THREAD imu_mag_tcb;
@@ -26,25 +26,25 @@ extern TX_EVENT_FLAGS_GROUP event_flags_led;
 extern TX_SEMAPHORE semaphore_imu;
 
 typedef struct mpu9250_imu_data_s {
-  uint8_t accel_xout_h;
-  uint8_t accel_xout_l;
-  uint8_t accel_yout_h;
-  uint8_t accel_yout_l;
-  uint8_t accel_zout_h;
-  uint8_t accel_zout_l;
-  uint8_t temp_out_h;
+  int8_t accl_xout_h;
+  uint8_t accl_xout_l;
+  int8_t accl_yout_h;
+  uint8_t accl_yout_l;
+  int8_t accl_zout_h;
+  uint8_t accl_zout_l;
+  int8_t temp_out_h;
   uint8_t temp_out_l;
-  uint8_t gyro_xout_h;
+  int8_t gyro_xout_h;
   uint8_t gyro_xout_l;
-  uint8_t gyro_yout_h;
+  int8_t gyro_yout_h;
   uint8_t gyro_yout_l;
-  uint8_t gyro_zout_h;
+  int8_t gyro_zout_h;
   uint8_t gyro_zout_l;
 } mpu9250_imu_data_t;
 
 typedef struct sensor_imu_s
 {
-  float acce[3];
+  float accl[3];
   float gyro[3];
 } sensor_imu_t;
 
@@ -55,7 +55,7 @@ typedef struct sensor_mag_s
 
 /* Communication data */
 typedef struct imu_s {
-  float acce[3];
+  float accl[3];
   float gyro[3];
 } imu_t;
 typedef struct mag_s {
