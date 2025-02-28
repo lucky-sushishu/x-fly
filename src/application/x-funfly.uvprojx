@@ -313,7 +313,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>1</Optim>
+            <Optim>0</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F411xE,TX_EXECUTION_PROFILE_ENABLE,TX_CORTEX_M_EPK</Define>
               <Undefine></Undefine>
-              <IncludePath>..\application;..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Inc;..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Inc\Legacy;..\lib\STM32Cube_FW_F4_V1.28.0\CMSIS\Device\ST\STM32F4xx\Include;..\lib\STM32Cube_FW_F4_V1.28.0\CMSIS\Include;..\..\rtos\threadx\common\inc;..\..\rtos\threadx\ports\cortex_m4\ac6\inc;..\..\rtos\threadx\utility\execution_profile_kit;.\driver\mpu9250;.\system\delay;.\system\software_i2c;.\module\imu;.\module\thread;.\module\communication;..\lib\Algorithm\MadgwickAHRS;..\lib\Protocol\ANO</IncludePath>
+              <IncludePath>..\application;..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Inc;..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Inc\Legacy;..\lib\STM32Cube_FW_F4_V1.28.0\CMSIS\Device\ST\STM32F4xx\Include;..\lib\STM32Cube_FW_F4_V1.28.0\CMSIS\Include;.\bsp\inc;..\..\rtos\threadx\common\inc;..\..\rtos\threadx\ports\cortex_m4\ac6\inc;..\..\rtos\threadx\utility\execution_profile_kit;.\driver\mpu9250;.\system\delay;.\system\software_i2c;.\module\imu;.\module\thread;.\module\communication;..\lib\Algorithm\MadgwickAHRS;..\lib\Protocol\ANO</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -772,6 +772,16 @@
               <FileName>system_stm32f4xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\system_stm32f4xx.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>BSP</GroupName>
+          <Files>
+            <File>
+              <FileName>bsp_dwt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\bsp\src\bsp_dwt.c</FilePath>
             </File>
           </Files>
         </Group>

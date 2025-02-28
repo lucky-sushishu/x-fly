@@ -23,7 +23,7 @@ void communication_entry(ULONG thread_input)
             continue;
         }
 
-        #if 1
+        #if 0
         // imu_data.acc_x = (int16_t)(roundf(communication_data.imu.accl[0] * 100));
         // imu_data.acc_y = (int16_t)(roundf(communication_data.imu.accl[1] * 100));
         // imu_data.acc_z = (int16_t)(roundf(communication_data.imu.accl[2] * 100));

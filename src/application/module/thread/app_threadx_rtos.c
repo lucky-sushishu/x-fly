@@ -9,7 +9,7 @@
 // #include "includes.h"
 
 #define LED_PRIO 15
-#define LED_STACKSIZE 1024
+#define LED_STACKSIZE 102400
 static TX_THREAD led_tcb;
 static UCHAR led_stack[LED_STACKSIZE];
 
@@ -81,6 +81,10 @@ void led_entry(ULONG thread_input)
 {
   UINT status;
   ULONG actual_flags;
+  EXECUTION_TIME TotalTime, IdleTime, _thread_time, _isr_time, _idle_time, Delta_TotalTime, Delta_IdleTime;
+  UINT uiCount = 0;
+  double CpuUsage = 0;
+
   led_init();
 
   /* Wait for event flag 0.  */
@@ -92,10 +96,38 @@ void led_entry(ULONG thread_input)
   else if(actual_flags == IMU_INIT_ERROR)
     led_set(number_1 | number_4, red);
 
+  HAL_ResumeTick();
+
+  _tx_execution_thread_total_time_get(&_thread_time);
+  _tx_execution_isr_time_get(&_isr_time);
+  _tx_execution_idle_time_get(&_idle_time);
+  IdleTime = _idle_time;
+  TotalTime = _thread_time + _isr_time + _idle_time;
+
   while (1)
   {
     /* TODO: led display uav status */
-    tx_thread_sleep(100);
+
+    /* Compute CPU usage */
+    _tx_execution_thread_total_time_get(&_thread_time);
+    _tx_execution_isr_time_get(&_isr_time);
+    _tx_execution_idle_time_get(&_idle_time);
+
+    if(++uiCount == 200)
+    {
+      uiCount = 0;
+      
+      Delta_IdleTime = _idle_time - IdleTime;
+      Delta_TotalTime = _thread_time + _isr_time + _idle_time - TotalTime;
+
+      CpuUsage = (double)Delta_IdleTime / Delta_TotalTime;
+      CpuUsage = 100 - CpuUsage * 100;
+
+      IdleTime = _idle_time;
+      TotalTime = _thread_time + _isr_time + _idle_time;
+      printf("%f\n", CpuUsage);
+    }
+    tx_thread_sleep(1);
   }
 }
 

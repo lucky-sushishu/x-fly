@@ -11,6 +11,8 @@
         "software_i2c.h": "c",
         "mpu9250.h": "c",
         "usart.h": "c",
-        "madgwickahrs.h": "c"
+        "madgwickahrs.h": "c",
+        "tx_port.h": "c",
+        "gpio.h": "c"
     }
 }

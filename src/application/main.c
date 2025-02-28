@@ -67,7 +67,10 @@ int main(void)
 	MX_DMA_Init();
   MX_USART1_UART_Init();
   MX_I2C1_Init();
-  printf("********************X-FUNFLY********************\r\n");
+
+  /* BSP init */
+  BSP_DWT_Init();
+  printf("\r\n********************X-FUNFLY********************\r\n");
 	
   /* ThreadX entry */
   tx_kernel_enter();
