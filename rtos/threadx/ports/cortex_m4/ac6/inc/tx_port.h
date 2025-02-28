@@ -725,5 +725,7 @@ extern  CHAR                    _tx_version_id[];
 #endif
 #endif
 
+/* Open threadx OS' config by User */
+#define TX_ENABLE_STACK_CHECKING
 
 #endif

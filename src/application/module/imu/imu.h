@@ -15,7 +15,7 @@
 #define MAG (50.0f)
 
 #define IMU_MAG_PRIO 14
-#define IMU_MAG_STACKSIZE (5 * 1024)
+#define IMU_MAG_STACKSIZE (4 * 1024)
 #define IMU_QUEUE_SIZE 100
 
 extern TX_THREAD imu_mag_tcb;
