@@ -1,12 +1,12 @@
 /**
   ******************************************************************************
-  * @file    Templates/Inc/stm32f4xx_it.h 
+  * @file    usbd_cdc_if_template.h
   * @author  MCD Application Team
-  * @brief   This file contains the headers of the interrupt handlers.
+  * @brief   Header for usbd_cdc_if_template.c file.
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics.
+  * Copyright (c) 2015 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -17,34 +17,27 @@
   */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __STM32F4xx_IT_H
-#define __STM32F4xx_IT_H
+#ifndef __USBD_CDC_IF_TEMPLATE_H
+#define __USBD_CDC_IF_TEMPLATE_H
 
 #ifdef __cplusplus
- extern "C" {
-#endif 
+extern "C" {
+#endif
 
 /* Includes ------------------------------------------------------------------*/
+#include "usbd_cdc.h"
+
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
+
+extern USBD_CDC_ItfTypeDef  USBD_CDC_Template_fops;
+
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
-
-void NMI_Handler(void);
-void HardFault_Handler(void);
-void MemManage_Handler(void);
-void BusFault_Handler(void);
-void UsageFault_Handler(void);
-void SVC_Handler(void);
-void DebugMon_Handler(void);
-//void PendSV_Handler(void);
-//void SysTick_Handler(void);
-void DMA1_Stream0_IRQHandler(void);
-void DMA1_Stream1_IRQHandler(void);
-void OTG_FS_IRQHandler(void);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* __STM32F4xx_IT_H */
+#endif /* __USBD_CDC_IF_TEMPLATE_H */
+

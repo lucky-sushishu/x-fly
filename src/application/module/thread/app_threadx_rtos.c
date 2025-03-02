@@ -113,106 +113,107 @@ void led_entry(ULONG thread_input)
   {
     /* TODO: led display uav status */
 
-    /* Compute CPU usage */
-    _tx_execution_thread_total_time_get(&_thread_time);
-    _tx_execution_isr_time_get(&_isr_time);
-    _tx_execution_idle_time_get(&_idle_time);
+    // /* Compute CPU usage */
+    // _tx_execution_thread_total_time_get(&_thread_time);
+    // _tx_execution_isr_time_get(&_isr_time);
+    // _tx_execution_idle_time_get(&_idle_time);
 
-    if(++uiCount == 200)
-    {
-      uiCount = 0;
+    // if(++uiCount == 200)
+    // {
+    //   uiCount = 0;
       
-      Delta_IdleTime = _idle_time - IdleTime;
-      Delta_TotalTime = _thread_time + _isr_time + _idle_time - TotalTime;
+    //   Delta_IdleTime = _idle_time - IdleTime;
+    //   Delta_TotalTime = _thread_time + _isr_time + _idle_time - TotalTime;
 
-      CpuUsage = (double)Delta_IdleTime / Delta_TotalTime;
-      CpuUsage = 100 - CpuUsage * 100;
+    //   CpuUsage = (double)Delta_IdleTime / Delta_TotalTime;
+    //   CpuUsage = 100 - CpuUsage * 100;
 
-      IdleTime = _idle_time;
-      TotalTime = _thread_time + _isr_time + _idle_time;
-      printf("====================================================================================================================================================\r\n");
+    //   IdleTime = _idle_time;
+    //   TotalTime = _thread_time + _isr_time + _idle_time;
+    //   printf("\r\n====================================================================================================================================================\r\n");
 
-      /* Check thread numbers */
-      while(p_tcb != TX_NULL)
-      {
-        thread_numbers++;
-        p_tcb = p_tcb->tx_thread_created_next;
-        if(p_tcb == &led_tcb)
-          break;
-      }
-      printf("| Prio |      ThreadName      | ThreadState | StkSize   StartAddr      EndAddr   CurStack  MaxStack  StackUsage | CPUUsage  Total(%5.2f%%) RunCount |\r\n", CpuUsage);
-      for(int i = 0; i < TX_MAX_PRIORITIES; i++)
-      {
-        while(p_tcb != TX_NULL)
-        {
-          if(p_tcb->tx_thread_priority == i)
-          {
-            /* Get thread info */
-            _tx_execution_thread_time_get(p_tcb, &ThreadTime);
-            ThreadUsage = (double)ThreadTime / _thread_time * 100;
-            ThreadCpuUsage = (double)ThreadTime / TotalTime * 100;
-            ThreadStackUsage = (float)((int)p_tcb->tx_thread_stack_end - (int)p_tcb->tx_thread_stack_highest_ptr) / (float)p_tcb->tx_thread_stack_size;
+    //   /* Check thread numbers */
+    //   while(p_tcb != TX_NULL)
+    //   {
+    //     thread_numbers++;
+    //     p_tcb = p_tcb->tx_thread_created_next;
+    //     if(p_tcb == &led_tcb)
+    //       break;
+    //   }
+    //   printf("| Prio |      ThreadName      | ThreadState | StkSize   StartAddr      EndAddr   CurStack  MaxStack  StackUsage | CPUUsage  Total(%5.2f%%) RunCount |\r\n", CpuUsage);
+    //   for(int i = 0; i < TX_MAX_PRIORITIES; i++)
+    //   {
+    //     while(p_tcb != TX_NULL)
+    //     {
+    //       if(p_tcb->tx_thread_priority == i)
+    //       {
+    //         /* Get thread info */
+    //         _tx_execution_thread_time_get(p_tcb, &ThreadTime);
+    //         ThreadUsage = (double)ThreadTime / _thread_time * 100;
+    //         ThreadCpuUsage = (double)ThreadTime / TotalTime * 100;
+    //         ThreadStackUsage = (float)((int)p_tcb->tx_thread_stack_end - (int)p_tcb->tx_thread_stack_highest_ptr) / (float)p_tcb->tx_thread_stack_size;
             
-            switch ((int)p_tcb->tx_thread_state)
-            {
-              case TX_READY:
-                  strcpy(thread_state, "RUNNING");
-                  break;
-              case TX_COMPLETED:
-                  strcpy(thread_state, "COMPLETED");
-                  break;
-              case TX_TERMINATED:
-                  strcpy(thread_state, "TERMINATED");
-                  break;
-              case TX_SUSPENDED:
-                  strcpy(thread_state, "SUSPEND");
-                  break;
-              case TX_SLEEP:
-                  strcpy(thread_state, "SLEEP");
-                  break;
-              case TX_QUEUE_SUSP:
-                  strcpy(thread_state, "WAIT QUEUE");
-                  break;
-              case TX_SEMAPHORE_SUSP:
-                  strcpy(thread_state, "WAIT SEM");
-                  break;
-              case TX_EVENT_FLAG:
-                  strcpy(thread_state, "WAIT EVENT");
-                  break;
-              case TX_BLOCK_MEMORY:
-                  strcpy(thread_state, "WAIT BLOCK");
-                  break;
-              case TX_BYTE_MEMORY:
-                  strcpy(thread_state, "WAIT BYTE");
-                  break;
-              case TX_MUTEX_SUSP:
-                  strcpy(thread_state, "WAIT MUTEX");
-                  break;
-              default:
-                  strcpy(thread_state, "");
-                  break;
-            }
+    //         switch ((int)p_tcb->tx_thread_state)
+    //         {
+    //           case TX_READY:
+    //               strcpy(thread_state, "RUNNING");
+    //               break;
+    //           case TX_COMPLETED:
+    //               strcpy(thread_state, "COMPLETED");
+    //               break;
+    //           case TX_TERMINATED:
+    //               strcpy(thread_state, "TERMINATED");
+    //               break;
+    //           case TX_SUSPENDED:
+    //               strcpy(thread_state, "SUSPEND");
+    //               break;
+    //           case TX_SLEEP:
+    //               strcpy(thread_state, "SLEEP");
+    //               break;
+    //           case TX_QUEUE_SUSP:
+    //               strcpy(thread_state, "WAIT QUEUE");
+    //               break;
+    //           case TX_SEMAPHORE_SUSP:
+    //               strcpy(thread_state, "WAIT SEM");
+    //               break;
+    //           case TX_EVENT_FLAG:
+    //               strcpy(thread_state, "WAIT EVENT");
+    //               break;
+    //           case TX_BLOCK_MEMORY:
+    //               strcpy(thread_state, "WAIT BLOCK");
+    //               break;
+    //           case TX_BYTE_MEMORY:
+    //               strcpy(thread_state, "WAIT BYTE");
+    //               break;
+    //           case TX_MUTEX_SUSP:
+    //               strcpy(thread_state, "WAIT MUTEX");
+    //               break;
+    //           default:
+    //               strcpy(thread_state, "");
+    //               break;
+    //         }
 
-            printf("| %3d  | %20s | %10s  | %6lu  [0x%08x]  [0x%08x]  %5d    %6d      %4.1f%%    |  %4.1f%%      %7.4f%%    %8lu |\r\n", 
-              p_tcb->tx_thread_priority,
-              p_tcb->tx_thread_name,
-              thread_state,
-              p_tcb->tx_thread_stack_size, (int)p_tcb->tx_thread_stack_start, (int)p_tcb->tx_thread_stack_end,
-              (int)p_tcb->tx_thread_stack_end - (int)p_tcb->tx_thread_stack_ptr,
-              (uint32_t)p_tcb->tx_thread_stack_end - (uint32_t)p_tcb->tx_thread_stack_highest_ptr,
-              ThreadStackUsage * 100.0f,
-              ThreadUsage,
-              ThreadCpuUsage,
-              p_tcb->tx_thread_run_count);
-          }
-          p_tcb = p_tcb->tx_thread_created_next;
-          if(p_tcb == &led_tcb)
-          break;
-        }
+    //         // printf("| %3d  | %20s | %10s  | %6lu  [0x%08x]  [0x%08x]  %5d    %6d      %4.1f%%    |  %4.1f%%      %7.4f%%    %8lu |\r\n", 
+    //         //   p_tcb->tx_thread_priority,
+    //         //   p_tcb->tx_thread_name,
+    //         //   thread_state,
+    //         //   p_tcb->tx_thread_stack_size, (int)p_tcb->tx_thread_stack_start, (int)p_tcb->tx_thread_stack_end,
+    //         //   (int)p_tcb->tx_thread_stack_end - (int)p_tcb->tx_thread_stack_ptr,
+    //         //   (uint32_t)p_tcb->tx_thread_stack_end - (uint32_t)p_tcb->tx_thread_stack_highest_ptr,
+    //         //   ThreadStackUsage * 100.0f,
+    //         //   ThreadUsage,
+    //         //   ThreadCpuUsage,
+    //         //   p_tcb->tx_thread_run_count);
+    //       }
+    //       p_tcb = p_tcb->tx_thread_created_next;
+    //       if(p_tcb == &led_tcb)
+    //       break;
+    //     }
         
-      }
-    }
-    tx_thread_sleep(1);
+    //   }
+    // }
+    tx_thread_sleep(1000);
+    printf("1");
   }
 }
 
@@ -222,20 +223,20 @@ void tx_application_define(void *first_unused_memory)
                                 &led_stack[0], LED_STACKSIZE,
                                 LED_PRIO, LED_PRIO, TX_NO_TIME_SLICE, TX_AUTO_START);
 
-  tx_thread_create(&imu_mag_tcb, "sensor", imu_mag_entry, 0,
-                                &imu_mag_stack[0], IMU_MAG_STACKSIZE,
-                                IMU_MAG_PRIO, IMU_MAG_PRIO, TX_NO_TIME_SLICE, TX_AUTO_START);
+//   tx_thread_create(&imu_mag_tcb, "sensor", imu_mag_entry, 0,
+//                                 &imu_mag_stack[0], IMU_MAG_STACKSIZE,
+//                                 IMU_MAG_PRIO, IMU_MAG_PRIO, TX_NO_TIME_SLICE, TX_AUTO_START);
 
-  tx_thread_create(&communication_tcb, "communication", communication_entry, 0,
-                                &communication_stack[0], COMMUNICATION_STACKSIZE,
-                                COMMUNICATION_PRIO, COMMUNICATION_PRIO, TX_NO_TIME_SLICE, TX_AUTO_START);
+//   tx_thread_create(&communication_tcb, "communication", communication_entry, 0,
+//                                 &communication_stack[0], COMMUNICATION_STACKSIZE,
+//                                 COMMUNICATION_PRIO, COMMUNICATION_PRIO, TX_NO_TIME_SLICE, TX_AUTO_START);
 
-  /* Create the comm message queue shared by imu_mag and communication.  */
-  tx_queue_create(&queue_comm, "comm queue", (sizeof(communication_data_t) / 4)*TX_1_ULONG, queue_imu_area, (sizeof(communication_data_t) / 4)*sizeof(float)*IMU_QUEUE_SIZE);
+//   /* Create the comm message queue shared by imu_mag and communication.  */
+//   tx_queue_create(&queue_comm, "comm queue", (sizeof(communication_data_t) / 4)*TX_1_ULONG, queue_imu_area, (sizeof(communication_data_t) / 4)*sizeof(float)*IMU_QUEUE_SIZE);
 
-  /* Create the event flags group used by threads sensor and led.  */
-  tx_event_flags_create(&event_flags_led, "led event flags ");
+//   /* Create the event flags group used by threads sensor and led.  */
+//   tx_event_flags_create(&event_flags_led, "led event flags ");
 
-  /* Create the semaphore used by sensor and i2c dma rx transfer completed callback. */
-  tx_semaphore_create(&semaphore_imu, "imu semaphore", 1);
+//   /* Create the semaphore used by sensor and i2c dma rx transfer completed callback. */
+//   tx_semaphore_create(&semaphore_imu, "imu semaphore", 1);
 }

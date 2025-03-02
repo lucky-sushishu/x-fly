@@ -9,9 +9,11 @@
 #include "usart.h"
 #include "i2c.h"
 #include "dma.h"
+#include "usb_device.h"
 
 /* BSP */
 #include "bsp_dwt.h"
+#include "bsp_usb.h"
 
 /* sys文件 */
 #include "software_i2c.h"

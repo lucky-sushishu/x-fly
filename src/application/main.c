@@ -20,8 +20,6 @@
 #include "main.h"
 #include "includes.h"
 
-//uint8_t who_ai_i = 0;
-
 /** @addtogroup STM32F4xx_HAL_Examples
   * @{
   */
@@ -67,17 +65,20 @@ int main(void)
 	MX_DMA_Init();
   MX_USART1_UART_Init();
   MX_I2C1_Init();
+	MX_USB_DEVICE_Init();
 
   /* BSP init */
   BSP_DWT_Init();
-  printf("\r\n********************X-FUNFLY********************\r\n");
+  printf("\r\n**********************************************************************X-FUNFLY**********************************************************************\r\n");
 	
   /* ThreadX entry */
-  tx_kernel_enter();
+  // tx_kernel_enter();
 
   /* Infinite loop */
   while (1)
   {
+		delay_ms(1000);
+		VirtualComPort_Sned((uint8_t *)"world\r\n", 7);
   }
 }
 
@@ -85,16 +86,16 @@ int main(void)
   * @brief  System Clock Configuration
   *         The system Clock is configured as follow : 
   *            System Clock source            = PLL (HSE)
-  *            SYSCLK(Hz)                     = 100000000
-  *            HCLK(Hz)                       = 100000000
+  *            SYSCLK(Hz)                     = 96000000
+  *            HCLK(Hz)                       = 96000000
   *            AHB Prescaler                  = 1
   *            APB1 Prescaler                 = 2
   *            APB2 Prescaler                 = 1
   *            HSE Frequency(Hz)              = 8000000
   *            PLL_M                          = 4
-  *            PLL_N                          = 100
-  *            PLL_P                          = 2
-  *            PLL_Q                          = 4
+  *            PLL_N                          = 192
+  *            PLL_P                          = 4
+  *            PLL_Q                          = 8
   *            VDD(V)                         = 3.3
   *            Main regulator output voltage  = Scale1 mode
   *            Flash Latency(WS)              = 3
@@ -116,9 +117,9 @@ static void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLM = 4;
-  RCC_OscInitStruct.PLL.PLLN = 100;
-  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = 4;
+  RCC_OscInitStruct.PLL.PLLN = 192;
+  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV4;
+  RCC_OscInitStruct.PLL.PLLQ = 8;
   if(HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();

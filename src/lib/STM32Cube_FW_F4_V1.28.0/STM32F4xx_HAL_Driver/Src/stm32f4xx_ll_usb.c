@@ -258,7 +258,7 @@ HAL_StatusTypeDef USB_SetCurrentMode(USB_OTG_GlobalTypeDef *USBx, USB_OTG_ModeTy
 
     do
     {
-      HAL_Delay(10U);
+      // HAL_Delay(10U);
       ms += 10U;
     } while ((USB_GetMode(USBx) != (uint32_t)USB_HOST_MODE) && (ms < HAL_USB_CURRENT_MODE_MAX_DELAY_MS));
   }
@@ -268,7 +268,7 @@ HAL_StatusTypeDef USB_SetCurrentMode(USB_OTG_GlobalTypeDef *USBx, USB_OTG_ModeTy
 
     do
     {
-      HAL_Delay(10U);
+      // HAL_Delay(10U);
       ms += 10U;
     } while ((USB_GetMode(USBx) != (uint32_t)USB_DEVICE_MODE) && (ms < HAL_USB_CURRENT_MODE_MAX_DELAY_MS));
   }

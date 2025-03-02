@@ -38,7 +38,7 @@
     .global     Image$$RW_IRAM1$$ZI$$Limit
 @
 @
-SYSTEM_CLOCK      =   100000000
+SYSTEM_CLOCK      =   96000000
 SYSTICK_CYCLES    =   ((SYSTEM_CLOCK / 1000) -1)
 
     .text 32
