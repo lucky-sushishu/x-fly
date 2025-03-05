@@ -30,7 +30,7 @@
 #include "usbd_cdc.h"
 
 /* USER CODE BEGIN INCLUDE */
-
+#include "tx_api.h"
 /* USER CODE END INCLUDE */
 
 /** @addtogroup STM32_USB_OTG_DEVICE_LIBRARY
@@ -64,7 +64,8 @@
   */
 
 /* USER CODE BEGIN EXPORTED_TYPES */
-
+extern uint8_t UserRxBufferFS[APP_RX_DATA_SIZE];
+extern uint8_t UserTxBufferFS[APP_RX_DATA_SIZE];
 /* USER CODE END EXPORTED_TYPES */
 
 /**
@@ -105,7 +106,7 @@ extern USBD_CDC_ItfTypeDef USBD_Interface_fops_FS;
   * @{
   */
 
-uint8_t CDC_Transmit_FS(uint8_t* Buf, uint16_t Len);
+uint8_t CDC_Transmit_FS(uint8_t* Buf, uint16_t Len, uint32_t Timeout);
 
 /* USER CODE BEGIN EXPORTED_FUNCTIONS */
 

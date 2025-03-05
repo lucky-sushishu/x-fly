@@ -1,18 +1,18 @@
 {
     "files.associations": {
         "communication.h": "c",
-        "imu.h": "c",
         "tx_api.h": "c",
         "ano.h": "c",
         "main.h": "c",
         "includes.h": "c",
-        "dma.h": "c",
-        "i2c.h": "c",
-        "software_i2c.h": "c",
         "mpu9250.h": "c",
-        "usart.h": "c",
         "madgwickahrs.h": "c",
         "tx_port.h": "c",
-        "gpio.h": "c"
+        "bsp_usb.h": "c",
+        "stdarg.h": "c",
+        "usbd_cdc_if.h": "c",
+        "bsp_delay.h": "c",
+        "sensor.h": "c",
+        "led.h": "c"
     }
 }

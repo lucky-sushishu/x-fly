@@ -1,26 +1,19 @@
-#include "imu.h"
+#include "sensor.h"
 
 /* Define the thread */
-TX_THREAD imu_mag_tcb;
-UCHAR imu_mag_stack[IMU_MAG_STACKSIZE];
-
-/* Define the imu queue */
-TX_QUEUE queue_comm;
-/* Define event flags group */
-TX_EVENT_FLAGS_GROUP event_flags_led;
-/* Define semaphore */
-TX_SEMAPHORE semaphore_imu;
-/* Variable */
-UCHAR queue_imu_area[3*sizeof(float)*IMU_QUEUE_SIZE];
+TX_THREAD sensor_tcb;
+UCHAR sensor_stack[SENSOR_STACKSIZE];
 
 static float gyro_bais[3];
 static mpu9250_imu_data_t mpu9250_imu_data;
+
+extern I2C_HandleTypeDef hi2c1;
 
 /* Function declaration */
 void compute_gyro_bais(void);
 void q2euler(float q0, float q1, float q2, float q3, float *roll, float *pitch, float *yaw);
 
-void imu_mag_entry(ULONG thread_input)
+void sensor_entry(ULONG thread_input)
 {
   /* init */
   UINT status;

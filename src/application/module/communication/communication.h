@@ -5,12 +5,11 @@
 
 #include "stm32f4xx_hal.h"
 
-#include "usart.h"
 #include "ano.h"
 
 #include <math.h>
 
-#include "imu.h"
+#include "sensor.h"
 
 #define COMMUNICATION_PRIO 14
 #define COMMUNICATION_STACKSIZE 2048

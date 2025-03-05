@@ -3,9 +3,7 @@
 
 #include "stm32f4xx_hal.h"
 #include "tx_api.h"
-#include "software_i2c.h"
-#include "usart.h"
-#include "i2c.h"
+#include "bsp_software_i2c.h"
 
 #define MPU9250_ADDR 0X69 // MPU9250的器件IIC地址
 #define MPU9250_ID 0X71   // MPU9250的器件ID

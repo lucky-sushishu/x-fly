@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F411xE,TX_EXECUTION_PROFILE_ENABLE,TX_CORTEX_M_EPK</Define>
               <Undefine></Undefine>
-              <IncludePath>..\application;..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Inc;..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Inc\Legacy;..\lib\STM32Cube_FW_F4_V1.28.0\CMSIS\Device\ST\STM32F4xx\Include;..\lib\STM32Cube_FW_F4_V1.28.0\CMSIS\Include;.\bsp\inc;..\..\rtos\threadx\common\inc;..\..\rtos\threadx\ports\cortex_m4\ac6\inc;..\..\rtos\threadx\utility\execution_profile_kit;.\driver\mpu9250;.\system\delay;.\system\software_i2c;.\module\imu;.\module\thread;.\module\communication;..\lib\Algorithm\MadgwickAHRS;..\lib\Protocol\ANO;..\lib\STM32_USB\USB_DEVICE\App;..\lib\STM32_USB\USB_DEVICE\Target;..\lib\STM32_USB\STM32_USB_Device_Library\Core\Inc;..\lib\STM32_USB\STM32_USB_Device_Library\Class\CDC\Inc</IncludePath>
+              <IncludePath>..\application;..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Inc;..\lib\STM32Cube_FW_F4_V1.28.0\STM32F4xx_HAL_Driver\Inc\Legacy;..\lib\STM32Cube_FW_F4_V1.28.0\CMSIS\Device\ST\STM32F4xx\Include;..\lib\STM32Cube_FW_F4_V1.28.0\CMSIS\Include;.\bsp\inc;..\..\rtos\threadx\common\inc;..\..\rtos\threadx\ports\cortex_m4\ac6\inc;..\..\rtos\threadx\utility\execution_profile_kit;.\driver\mpu9250;.\module\sensor;.\module\communication;.\module\led;.\module\cli;..\lib\Algorithm\MadgwickAHRS;..\lib\Protocol\ANO;..\lib\STM32_USB\USB_DEVICE\App;..\lib\STM32_USB\USB_DEVICE\Target;..\lib\STM32_USB\STM32_USB_Device_Library\Core\Inc;..\lib\STM32_USB\STM32_USB_Device_Library\Class\CDC\Inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -389,44 +389,24 @@
               <FilePath>.\main.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_hal_msp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\stm32f4xx_hal_msp.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\stm32f4xx_it.c</FilePath>
             </File>
             <File>
-              <FileName>gpio.c</FileName>
+              <FileName>stm32f4xx_hal_msp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\gpio.c</FilePath>
+              <FilePath>.\stm32f4xx_hal_msp.c</FilePath>
             </File>
             <File>
-              <FileName>usart.c</FileName>
+              <FileName>thread.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\usart.c</FilePath>
+              <FilePath>.\thread.c</FilePath>
             </File>
             <File>
               <FileName>tx_initialize_low_level.S</FileName>
               <FileType>2</FileType>
               <FilePath>.\tx_initialize_low_level.S</FilePath>
-            </File>
-            <File>
-              <FileName>includes.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\includes.h</FilePath>
-            </File>
-            <File>
-              <FileName>i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>dma.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\dma.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -802,6 +782,16 @@
               <FileName>bsp_usb.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\bsp\src\bsp_usb.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\bsp\src\bsp_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_software_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\bsp\src\bsp_software_i2c.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1796,26 +1786,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>sys/delay</GroupName>
-          <Files>
-            <File>
-              <FileName>delay.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\system\delay\delay.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>sys/software_i2c</GroupName>
-          <Files>
-            <File>
-              <FileName>software_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\system\software_i2c\software_i2c.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>driver/mpu9250</GroupName>
           <Files>
             <File>
@@ -1891,22 +1861,22 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>module/imu</GroupName>
+          <GroupName>module/sensor</GroupName>
           <Files>
             <File>
-              <FileName>imu.c</FileName>
+              <FileName>sensor.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\module\imu\imu.c</FilePath>
+              <FilePath>.\module\sensor\sensor.c</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>module/thread</GroupName>
+          <GroupName>module/led</GroupName>
           <Files>
             <File>
-              <FileName>app_threadx_rtos.c</FileName>
+              <FileName>led.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\module\thread\app_threadx_rtos.c</FilePath>
+              <FilePath>.\module\led\led.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1917,6 +1887,16 @@
               <FileName>communication.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\module\communication\communication.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>module/cli</GroupName>
+          <Files>
+            <File>
+              <FileName>cli.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\module\cli\cli.c</FilePath>
             </File>
           </Files>
         </Group>

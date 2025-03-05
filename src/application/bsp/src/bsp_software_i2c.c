@@ -1,4 +1,4 @@
-#include "software_i2c.h"
+#include "bsp_software_i2c.h"
 
 static void i2c_io_config(void)
 {

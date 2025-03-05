@@ -4,6 +4,8 @@
 #define IIC_HARDWARE_ENABLED 1
 #define IIC_SOFTWARE_ENABLED 0
 
+extern I2C_HandleTypeDef hi2c1;
+
 static uint8_t mpu9250_read(uint8_t dev_addr, uint8_t reg_addr, uint8_t *buf, uint8_t size)
 {
 #if IIC_DMA_ENABLED

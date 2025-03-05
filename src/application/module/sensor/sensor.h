@@ -1,5 +1,5 @@
-#ifndef _IMU_H_
-#define _IMU_H_
+#ifndef _SENSOR_H_
+#define _SENSOR_H_
 
 #include "includes.h"
 #include "tx_api.h"
@@ -11,19 +11,11 @@
 
 #include "ano.h"
 
-#define G (9.81f)
-#define MAG (50.0f)
+#define SENSOR_PRIO 14
+#define SENSOR_STACKSIZE (4 * 1024)
 
-#define IMU_MAG_PRIO 14
-#define IMU_MAG_STACKSIZE (4 * 1024)
-#define IMU_QUEUE_SIZE 100
-
-extern TX_THREAD imu_mag_tcb;
-extern UCHAR imu_mag_stack[IMU_MAG_STACKSIZE];
-extern TX_QUEUE queue_comm;
-extern UCHAR queue_imu_area[3*sizeof(float)*IMU_QUEUE_SIZE];
-extern TX_EVENT_FLAGS_GROUP event_flags_led;
-extern TX_SEMAPHORE semaphore_imu;
+extern TX_THREAD sensor_tcb;
+extern UCHAR sensor_stack[SENSOR_STACKSIZE];
 
 typedef struct mpu9250_imu_data_s {
   int8_t accl_xout_h;
@@ -80,6 +72,6 @@ typedef struct communication_data_s {
   quaternion_t quaternion;
 } communication_data_t;
 
-void imu_mag_entry(ULONG thread_input);
+void sensor_entry(ULONG thread_input);
 
-#endif // _IMU_H_
+#endif // _SENSOR_H_

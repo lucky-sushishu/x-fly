@@ -276,18 +276,33 @@ static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
   *
   * @param  Buf: Buffer of data to be sent
   * @param  Len: Number of data to be sent (in bytes)
+  * @param  Timeout: Ticks to wait
   * @retval USBD_OK if all operations are OK else USBD_FAIL or USBD_BUSY
   */
-uint8_t CDC_Transmit_FS(uint8_t* Buf, uint16_t Len)
+uint8_t CDC_Transmit_FS(uint8_t* Buf, uint16_t Len, uint32_t Timeout)
 {
   uint8_t result = USBD_OK;
   /* USER CODE BEGIN 7 */
+  ULONG TimeStart = tx_time_get();
   USBD_CDC_HandleTypeDef *hcdc = (USBD_CDC_HandleTypeDef*)hUsbDeviceFS.pClassData;
-  if (hcdc->TxState != 0){
-    return USBD_BUSY;
+  while(hcdc->TxState)
+  {
+    if(tx_time_get() - TimeStart > Timeout) {
+      return USBD_BUSY;
+    }
+    else {
+      break;
+    }
   }
+  
   USBD_CDC_SetTxBuffer(&hUsbDeviceFS, Buf, Len);
   result = USBD_CDC_TransmitPacket(&hUsbDeviceFS);
+  while(hcdc->TxState)
+  {
+    if(tx_time_get() - TimeStart > Timeout) {
+      return USBD_BUSY;
+    }
+  }
   /* USER CODE END 7 */
   return result;
 }
