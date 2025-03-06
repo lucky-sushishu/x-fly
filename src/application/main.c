@@ -66,7 +66,7 @@ int main(void)
      */
   HAL_Init();
 
-  /* Configure the System clock to have a frequency of 100 MHz */
+  /* Configure the System clock to have a frequency of 96 MHz */
   SystemClock_Config();
 
   /* Add your application code here */
