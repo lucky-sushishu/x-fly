@@ -13,6 +13,7 @@
         "usbd_cdc_if.h": "c",
         "bsp_delay.h": "c",
         "sensor.h": "c",
-        "led.h": "c"
+        "led.h": "c",
+        "stm32f4xx_hal.h": "c"
     }
 }
