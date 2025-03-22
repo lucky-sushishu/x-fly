@@ -71,10 +71,10 @@ int main(void)
 
   /* Add your application code here */
   MX_GPIO_Init();
-	MX_DMA_Init();
+  MX_DMA_Init();
   MX_USART1_UART_Init();
   MX_I2C1_Init();
-	MX_USB_DEVICE_Init();
+  MX_USB_DEVICE_Init();
 
   /* BSP init */
   BSP_DWT_Init();
