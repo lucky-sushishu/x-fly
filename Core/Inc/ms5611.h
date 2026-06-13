@@ -18,7 +18,12 @@ typedef struct ms5611_s ms5611_t;
 
 struct ms5611_s
 {
-    uint16_t    prom[6];                /* 参数         */
+    uint16_t    prom[6];                /* C1~C6 */
+
+    int32_t		dt;						/* DT */
+    int32_t		temp;					/* TEMP */
+    int64_t		off;					/* OFF */
+    int64_t		sens;					/* SENS */
 
     uint8_t     origin_pressure[3];     /* 原始气压数据 */
     uint8_t     origin_temperature[3];  /* 原始温度数据 */
@@ -36,7 +41,7 @@ int ms5611_write_byte(uint8_t reg_addr, const uint8_t reg_data);
 
 int ms5611_init(void);
 void ms5611_reset(void);
-int ms5611_read_pressure_value(uint8_t *value);
+int ms5611_update_pressure(void);
 int ms5611_update_temperature(void);
 
 #endif

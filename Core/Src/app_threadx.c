@@ -148,6 +148,7 @@ void tx_app_thread_entry(ULONG thread_input)
 	{
 #ifdef BAROMETER_API_TEST
 		ms5611_update_temperature();
+		ms5611_update_pressure();
 		tx_thread_sleep(50);
 //		printf("barometer: pressure=%f, temperature=%f\r\n", barometer->pressure, barometer->temperature);
 		printf("baro_pressure=%f\r\n", barometer->pressure);

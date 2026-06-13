@@ -25,6 +25,7 @@ int ms5611_init(void)
 		ms5611.prom[i] = (uint16_t)data[0] << 8 | data[1];
 	}
 
+
 	return 0;
 }
 
@@ -34,7 +35,7 @@ void ms5611_reset(void)
 	HAL_I2C_Master_Transmit(&hi2c1, (MS5611_ADDR << 1), &cmd, I2C_MEMADD_SIZE_8BIT, 5);
 }
 
-int ms5611_read_pressure_value(uint8_t *value)
+int ms5611_update_pressure(void)
 {
 	int i = 0;
 	uint8_t cmd = 0;
@@ -51,7 +52,14 @@ int ms5611_read_pressure_value(uint8_t *value)
 	i += HAL_I2C_Master_Transmit(&hi2c1, (MS5611_ADDR << 1) | 0x00, &cmd, I2C_MEMADD_SIZE_8BIT, 5);
 
 	/* Read Answer */
-	i += HAL_I2C_Master_Receive(&hi2c1, (MS5611_ADDR << 1) | 0x00, value, 3, 5);
+	i += HAL_I2C_Master_Receive(&hi2c1, (MS5611_ADDR << 1) | 0x00, &ms5611.origin_pressure[0], 3, 5);
+
+	uint32_t d1 	= (uint32_t)ms5611.origin_pressure[0] << 16 | (uint32_t)ms5611.origin_pressure[1] << 8 | (uint32_t)ms5611.origin_pressure[2];
+	ms5611.off  	= (int64_t)ms5611.prom[1] * (1 << 16) + ((int64_t)ms5611.prom[3] * ms5611.dt) / (1 << 7);
+	ms5611.sens 	= (int64_t)ms5611.prom[0] * (1 << 15) + ((int64_t)ms5611.prom[2] * ms5611.dt) / (1 << 8);
+	ms5611.pressure = ((d1 * ms5611.sens / (1 << 21) - ms5611.off) / (1 << 15)) / 100.0f;
+
+	ms5611.barometer.pressure = ms5611.pressure;
 
 	return i;
 }
@@ -76,10 +84,10 @@ int ms5611_update_temperature(void)
 	i += HAL_I2C_Master_Receive(&hi2c1, (MS5611_ADDR << 1) | 0x00, &ms5611.origin_temperature[0], 3, 5);
 
 	/* Calculate temperature */
-	uint32_t D2 	   = (uint32_t)ms5611.origin_temperature[0] << 16 | (uint32_t)ms5611.origin_temperature[1] << 8 | (uint32_t)ms5611.origin_temperature[2];
-	int32_t dT 	 	   = D2 - (ms5611.prom[4] * (1 <<8));
-	int32_t TEMP 	   = 2000 + (dT * ms5611.prom[5] / (1 <<23));
-	ms5611.temperature = (float)TEMP / 100.0f;
+	uint32_t d2 	   	= (uint32_t)ms5611.origin_temperature[0] << 16 | (uint32_t)ms5611.origin_temperature[1] << 8 | (uint32_t)ms5611.origin_temperature[2];
+	ms5611.dt 	 	   	= d2 - ms5611.prom[4] * (1 << 8);
+	ms5611.temp		   	= 2000 + ms5611.dt * ms5611.prom[5] / (1 << 23);
+	ms5611.temperature  = ms5611.temp / 100.0f;
 
 	ms5611.barometer.temperature = ms5611.temperature;
 
