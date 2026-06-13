@@ -31,6 +31,8 @@
 #include "icm20689.h"
 #include "ist8310.h"
 #include "ms5611.h"
+
+#include "barometer.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -44,7 +46,9 @@
 //#define ICM20602_TEST
 //#define ICM20689_TEST
 //#define IST8310_TEST
-#define MS5611_TEST
+// #define MS5611_TEST
+
+#define BAROMETER_API_TEST
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -134,9 +138,23 @@ void tx_app_thread_entry(ULONG thread_input)
 #endif
 
 	printf("\r\n--------- --------- --------- ---------\r\n");
+	ms5611_init();
+	barometer_t *barometer = sensor_barometer();
+	if (barometer == NULL) {
+		printf("barometer is error\r\n");
+	}
 
 	while (1)
 	{
+#ifdef BAROMETER_API_TEST
+		ms5611_update_temperature();
+		tx_thread_sleep(50);
+//		printf("barometer: pressure=%f, temperature=%f\r\n", barometer->pressure, barometer->temperature);
+		printf("baro_pressure=%f\r\n", barometer->pressure);
+		printf("baro_temperature=%f\r\n", barometer->temperature);
+#endif
+
+
 #ifdef BMI088_TEST
 		/* bmi088 test */
 		bmi088_read(BMI088_ACCE, BMI088_ACCE_CHIP_ID, &bmi088_acce_chip_id);

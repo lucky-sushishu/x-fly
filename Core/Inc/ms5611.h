@@ -2,6 +2,7 @@
 #define MS5611_H
 
 #include <stdint.h>
+#include "barometer.h"
 
 #define MS5611_ADDR								0x77
 
@@ -12,11 +13,23 @@
 #define MS5611_INITIATE_TEMPERATURE_CONVERSION 	0x58
 #define MS5611_ADC_READ_SEQUENCE 				0x00
 
-/* Pressure */
+/* MS5611主体 */
+typedef struct ms5611_s ms5611_t;
 
-/* Temperature */
+struct ms5611_s
+{
+    uint16_t    prom[6];                /* 参数         */
 
-extern uint16_t g_ms5611_prom[6];
+    uint8_t     origin_pressure[3];     /* 原始气压数据 */
+    uint8_t     origin_temperature[3];  /* 原始温度数据 */
+
+    float       pressure;               /* 直接由原始数据转换的气压数据 */
+    float       temperature;            /* 直接由原始数据转换的温度数据 */
+
+    barometer_t barometer;              /* 由温度补偿计算出的气压数据 */
+};
+
+extern ms5611_t ms5611;
 
 int ms5611_read_bytes(uint8_t reg_addr, uint8_t *reg_data, uint8_t length);
 int ms5611_write_byte(uint8_t reg_addr, const uint8_t reg_data);
@@ -24,6 +37,6 @@ int ms5611_write_byte(uint8_t reg_addr, const uint8_t reg_data);
 int ms5611_init(void);
 void ms5611_reset(void);
 int ms5611_read_pressure_value(uint8_t *value);
-int ms5611_read_temperature_value(uint8_t *value);
+int ms5611_update_temperature(void);
 
 #endif
