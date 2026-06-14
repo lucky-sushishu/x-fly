@@ -188,7 +188,7 @@ int spi_read(spi_cs_t cs, uint8_t *data,  uint8_t data_length)
 {
 	int result;
 	spi_enable_cs(cs);
-	result = HAL_SPI_Receive(&hspi3, data, data_length, 1000);
+	result = HAL_SPI_Receive(&hspi3, data, data_length, 10);
 	spi_disable_cs(cs);
 	return result;
 }
@@ -197,7 +197,7 @@ int spi_write(spi_cs_t cs, const uint8_t *data,  uint8_t data_length)
 {
 	int result;
 	spi_enable_cs(cs);
-	result = HAL_SPI_Transmit(&hspi3, data, data_length, 1000);
+	result = HAL_SPI_Transmit(&hspi3, data, data_length, 10);
 	spi_disable_cs(cs);
 	return result;
 }
@@ -206,7 +206,7 @@ int spi_write_read(spi_cs_t cs, uint8_t *tx_data, uint8_t *rx_data, uint16_t tx_
 {
 	int result;
 	spi_enable_cs(cs);
-	result = HAL_SPI_TransmitReceive(&hspi3, tx_data, rx_data, tx_length, 1000);
+	result = HAL_SPI_TransmitReceive(&hspi3, tx_data, rx_data, tx_length, 10);
 	spi_disable_cs(cs);
 	return result;
 }
