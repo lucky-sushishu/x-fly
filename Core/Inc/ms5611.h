@@ -24,6 +24,9 @@ struct ms5611_s
     int32_t		temp;					/* TEMP */
     int64_t		off;					/* OFF */
     int64_t		sens;					/* SENS */
+    int64_t		t2;						/* T2 */
+    int64_t		off2;					/* OFF2 */
+    int64_t		sens2;					/* SENS2 */
 
     uint8_t     origin_pressure[3];     /* 原始气压数据 */
     uint8_t     origin_temperature[3];  /* 原始温度数据 */
