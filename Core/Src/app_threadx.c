@@ -33,6 +33,7 @@
 #include "ms5611.h"
 
 #include "barometer.h"
+#include <math.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -153,6 +154,9 @@ void tx_app_thread_entry(ULONG thread_input)
 //		printf("barometer: pressure=%f, temperature=%f\r\n", barometer->pressure, barometer->temperature);
 		printf("baro_pressure=%f\r\n", barometer->pressure);
 		printf("baro_temperature=%f\r\n", barometer->temperature);
+		/* 计算高度 */
+		float altitude = 44330 * (1 - pow((barometer->pressure / 10.0f / BAROMETER_P0), 1 / 5.255f));
+		printf("altitude=%f\r\n", altitude);
 #endif
 
 
