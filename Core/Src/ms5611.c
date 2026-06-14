@@ -85,8 +85,8 @@ int ms5611_update_temperature(void)
 
 	/* Calculate temperature */
 	uint32_t d2 	   	= (uint32_t)ms5611.origin_temperature[0] << 16 | (uint32_t)ms5611.origin_temperature[1] << 8 | (uint32_t)ms5611.origin_temperature[2];
-	ms5611.dt 	 	   	= d2 - ms5611.prom[4] * (1 << 8);
-	ms5611.temp		   	= 2000 + ms5611.dt * ms5611.prom[5] / (1 << 23);
+	ms5611.dt 	 	   	= (int32_t)d2 - (int32_t)ms5611.prom[4] * (1 << 8);
+	ms5611.temp		   	= 2000 + (int64_t)ms5611.dt * ms5611.prom[5] / (1 << 23);
 	ms5611.temperature  = ms5611.temp / 100.0f;
 
 	ms5611.barometer.temperature = ms5611.temperature;
