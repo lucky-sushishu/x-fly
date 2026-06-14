@@ -39,9 +39,6 @@ struct ms5611_s
 
 extern ms5611_t ms5611;
 
-int ms5611_read_bytes(uint8_t reg_addr, uint8_t *reg_data, uint8_t length);
-int ms5611_write_byte(uint8_t reg_addr, const uint8_t reg_data);
-
 int ms5611_init(void);
 void ms5611_reset(void);
 int ms5611_update_pressure(void);
