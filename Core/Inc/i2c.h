@@ -41,7 +41,10 @@ extern I2C_HandleTypeDef hi2c1;
 void MX_I2C1_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-
+int i2c_read(uint8_t device_addr, uint8_t reg_addr, uint8_t *data,  uint8_t data_length);
+int i2c_write(uint8_t device_addr, uint8_t reg_addr, const uint8_t *data,  uint8_t data_length);
+int i2c_receive(uint8_t device_addr, uint8_t *data,  uint8_t data_length);
+int i2c_transmit(uint8_t device_addr, const uint8_t *data,  uint8_t data_length);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

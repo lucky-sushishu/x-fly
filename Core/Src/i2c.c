@@ -137,4 +137,23 @@ void HAL_I2C_MspDeInit(I2C_HandleTypeDef* i2cHandle)
 
 /* USER CODE BEGIN 1 */
 
+int i2c_read(uint8_t device_addr, uint8_t reg_addr, uint8_t *data,  uint8_t data_length)
+{
+	return HAL_I2C_Mem_Read(&hi2c1, device_addr, reg_addr, I2C_MEMADD_SIZE_8BIT, data, data_length, 50);
+}
+
+int i2c_write(uint8_t device_addr, uint8_t reg_addr, const uint8_t *data,  uint8_t data_length)
+{
+	return HAL_I2C_Mem_Write(&hi2c1, device_addr, reg_addr, I2C_MEMADD_SIZE_8BIT, (uint8_t *)data, data_length, 50);
+}
+
+int i2c_receive(uint8_t device_addr, uint8_t *data,  uint8_t data_length)
+{
+	return HAL_I2C_Master_Receive(&hi2c1, device_addr, data, data_length, 50);
+}
+
+int i2c_transmit(uint8_t device_addr, const uint8_t *data,  uint8_t data_length)
+{
+	return HAL_I2C_Master_Transmit(&hi2c1, device_addr, (uint8_t *)data, I2C_MEMADD_SIZE_8BIT, data_length);
+}
 /* USER CODE END 1 */
