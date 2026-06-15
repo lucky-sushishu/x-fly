@@ -49,7 +49,8 @@
 //#define IST8310_TEST
 // #define MS5611_TEST
 
-#define BAROMETER_API_TEST
+//#define BAROMETER_API_TEST
+#define MAG_API_TEST
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -139,14 +140,35 @@ void tx_app_thread_entry(ULONG thread_input)
 #endif
 
 	printf("\r\n--------- --------- --------- ---------\r\n");
+#ifdef MAG_API_TEST
+	int mag_init_result = ist8310_init();
+	if (mag_init_result != 0) {
+		printf("mag is error\r\n");
+	}
+#endif
+
+#ifdef BAROMETER_API_TEST
 	ms5611_init();
 	barometer_t *barometer = sensor_barometer();
 	if (barometer == NULL) {
 		printf("barometer is error\r\n");
 	}
+#endif
 
 	while (1)
 	{
+#ifdef MAG_API_TEST
+		uint8_t *output_data = &ist8310.origin_data[0];
+		ist8310_update_data();
+		int j = 0;
+		for (j = 0; j < 6; j++)
+		{
+			printf("output[%d]=%02x\r\n", j, output_data[j]);
+		}
+		tx_thread_sleep(50);
+#endif
+
+
 #ifdef BAROMETER_API_TEST
 		ms5611_update_temperature();
 		ms5611_update_pressure();
