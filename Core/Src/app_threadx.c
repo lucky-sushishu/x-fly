@@ -158,12 +158,11 @@ void tx_app_thread_entry(ULONG thread_input)
 	while (1)
 	{
 #ifdef MAG_API_TEST
-		uint8_t *output_data = &ist8310.origin_data[0];
 		ist8310_update_data();
 		int j = 0;
-		for (j = 0; j < 6; j++)
+		for (j = 0; j < 3; j++)
 		{
-			printf("output[%d]=%02x\r\n", j, output_data[j]);
+			printf("output[%d]=%d\r\n", j, ist8310.data[j]);
 		}
 		tx_thread_sleep(50);
 #endif

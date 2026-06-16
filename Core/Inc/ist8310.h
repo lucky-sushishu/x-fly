@@ -30,7 +30,7 @@ typedef struct ist8310_s ist8310_t;
 
 struct ist8310_s
 {
-	uint8_t origin_data[6];
+	int16_t data[3];
 };
 
 extern ist8310_t ist8310;

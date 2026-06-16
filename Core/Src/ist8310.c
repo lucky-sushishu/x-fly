@@ -48,7 +48,7 @@ int ist8310_init(void)
 int ist8310_update_data(void)
 {
 	uint8_t data = 0x01;
-	ist8310_write_bytes(IST8310_CNTL1, &data, 1);
+	ist8310_write_bytes(IST8310_CNTL1, &data, 0x01);
 
 	uint8_t status_register_1 = 0;
 	int count = 10;
@@ -57,7 +57,13 @@ int ist8310_update_data(void)
 		ist8310_read_bytes(IST8310_STATUS_1, &status_register_1, 1);
 		if (status_register_1 & IST8310_STATUS_1_DRDY)
 		{
-			ist8310_read_bytes(IST8310_DATAXL, &ist8310.origin_data[0], 6);
+			uint8_t origin_data[6] = {0};
+			ist8310_read_bytes(IST8310_DATAXL, &origin_data[0], 6);
+
+			ist8310.data[0] = (int16_t)(origin_data[0] << 8) | origin_data[1];
+			ist8310.data[1] = (int16_t)(origin_data[2] << 8) | origin_data[3];
+			ist8310.data[2] = (int16_t)(origin_data[4] << 8) | origin_data[5];
+
 			return 0;
 		}
 		HAL_Delay(1);
