@@ -3,22 +3,22 @@
 
 #include <stdint.h>
 
+#include "magnetometer.h"
+
+#define MAG_SEN 				0.3f //raw int16 data change to uT unit. 原始整型数据变成 单位ut
+
 #define IST8310_ADDR			0x0E
 #define IST8310_DEVICE_ID		0x10
 
 #define IST8310_WHO_AM_I		0x00
-
 #define IST8310_STATUS_1		0x02
-
 #define IST8310_DATAXL			0x03
 #define IST8310_DATAXH			0x04
 #define IST8310_DATAYL			0x05
 #define IST8310_DATAYH			0x06
 #define IST8310_DATAZL			0x07
 #define IST8310_DATAZH			0x08
-
 #define IST8310_CNTL1			0x0A
-
 #define IST8310_AVGCNTL			0x41
 #define IST8310_PDCNTL			0x42
 
@@ -30,7 +30,9 @@ typedef struct ist8310_s ist8310_t;
 
 struct ist8310_s
 {
-	int16_t data[3];
+	int16_t 	   data[3];
+
+	magnetometer_t magnetometer;
 };
 
 extern ist8310_t ist8310;
