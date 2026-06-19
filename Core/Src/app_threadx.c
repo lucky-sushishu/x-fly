@@ -32,7 +32,9 @@
 #include "ist8310.h"
 #include "ms5611.h"
 
+#include "imu.h"
 #include "barometer.h"
+#include "magnetometer.h"
 #include <math.h>
 /* USER CODE END Includes */
 
@@ -43,12 +45,13 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-//#define BMI088_TEST
+#define BMI088_TEST
 //#define ICM20602_TEST
 //#define ICM20689_TEST
+//#define MS5611_TEST
 //#define IST8310_TEST
-// #define MS5611_TEST
 
+#define IMU_API_TEST
 #define BAROMETER_API_TEST
 #define MAGNETOMETER_API_TEST
 /* USER CODE END PD */
@@ -61,11 +64,14 @@
 /* Private variables ---------------------------------------------------------*/
 TX_THREAD tx_app_thread;
 /* USER CODE BEGIN PV */
-#ifdef MAGNETOMETER_API_TEST
-magnetometer_t *magnetometer;
+#ifdef IMU_API_TEST
+imu_t *imu;
 #endif
 #ifdef BAROMETER_API_TEST
 barometer_t *barometer;
+#endif
+#ifdef MAGNETOMETER_API_TEST
+magnetometer_t *magnetometer;
 #endif
 /* USER CODE END PV */
 
@@ -116,9 +122,9 @@ UINT App_ThreadX_Init(VOID *memory_ptr)
 void tx_app_thread_entry(ULONG thread_input)
 {
   /* USER CODE BEGIN tx_app_thread_entry */
-//	int i = 0;
+	int i = 0;
 #ifdef BMI088_TEST
-	uint8_t bmi088_acce_chip_id = 0;
+	uint8_t bmi088_accl_chip_id = 0;
 	uint8_t bmi088_gyro_chip_id = 0;
 #endif
 #ifdef ICM20602_TEST
@@ -130,7 +136,7 @@ void tx_app_thread_entry(ULONG thread_input)
 
 	spi_init();
 #ifdef BMI088_TEST
-	bmi088_write(BMI088_ACCE, BMI088_ACCE_PWR_CTRL, BMI088_ACC_PWR_CTRL_ACC_ENABLE);
+	bmi088_write(BMI088_ACCL, BMI088_ACCL_PWR_CTRL, BMI088_ACC_PWR_CTRL_ACC_ENABLE);
 	tx_thread_sleep(500);
 #endif
 #ifdef ICM20602_TEST
@@ -156,6 +162,16 @@ void tx_app_thread_entry(ULONG thread_input)
 
 	while (1)
 	{
+#ifdef IMU_API_TEST
+		bmi088_update_data();
+		tx_thread_sleep(5);
+		printf("accl_x=%f\r\n", imu->accl[0]);
+		printf("accl_y=%f\r\n", imu->accl[1]);
+		printf("accl_z=%f\r\n", imu->accl[2]);
+		printf("gyro_x=%f\r\n", imu->gyro[0]);
+		printf("gyro_y=%f\r\n", imu->gyro[1]);
+		printf("gyro_z=%f\r\n", imu->gyro[2]);
+#endif
 #ifdef MAGNETOMETER_API_TEST
 		ist8310_update_data();
 		printf("mag_x=%f\r\n", magnetometer->mag[0]);
@@ -180,11 +196,11 @@ void tx_app_thread_entry(ULONG thread_input)
 
 #ifdef BMI088_TEST
 		/* bmi088 test */
-		bmi088_read(BMI088_ACCE, BMI088_ACCE_CHIP_ID, &bmi088_acce_chip_id);
+		bmi088_read(BMI088_ACCL, BMI088_ACCL_CHIP_ID, &bmi088_accl_chip_id);
 		tx_thread_sleep(500);
 		bmi088_read(BMI088_GYRO, BMI088_GYRO_CHIP_ID, &bmi088_gyro_chip_id);
 		tx_thread_sleep(500);
-		printf("bmi088: acce id 0x%02x, gyro id 0x%02x, %05d\r\n", bmi088_acce_chip_id, bmi088_gyro_chip_id, i++);
+		printf("bmi088: accl id 0x%02x, gyro id 0x%02x, %05d\r\n", bmi088_accl_chip_id, bmi088_gyro_chip_id, i++);
 #endif
 
 
@@ -267,16 +283,13 @@ void MX_ThreadX_Init(void)
 int sensor_init(void)
 {
 	int result = 0;
-#ifdef MAGNETOMETER_API_TEST
-	int mag_init_result = ist8310_init();
-	if (mag_init_result != 0) {
-		result = 1;
-		printf("mag is error\r\n");
-	}
-	magnetometer = sensor_magnetometer();
-	if (magnetometer == NULL) {
-		result = 2;
-		printf("magnetometer is error\r\n");
+
+#ifdef BAROMETER_API_TEST
+	result += bmi088_init();
+	imu = sensor_imu();
+	if (imu == NULL) {
+		result += 1;
+		printf("imu is error\r\n");
 	}
 #endif
 
@@ -284,8 +297,21 @@ int sensor_init(void)
 	ms5611_init();
 	barometer = sensor_barometer();
 	if (barometer == NULL) {
-		result = 3;
+		result += 1;
 		printf("barometer is error\r\n");
+	}
+#endif
+
+#ifdef MAGNETOMETER_API_TEST
+	int mag_init_result = ist8310_init();
+	if (mag_init_result != 0) {
+		result += 2;
+		printf("mag is error\r\n");
+	}
+	magnetometer = sensor_magnetometer();
+	if (magnetometer == NULL) {
+		result += 3;
+		printf("magnetometer is error\r\n");
 	}
 #endif
 
