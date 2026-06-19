@@ -49,8 +49,8 @@
 //#define IST8310_TEST
 // #define MS5611_TEST
 
-//#define BAROMETER_API_TEST
-#define MAG_API_TEST
+#define BAROMETER_API_TEST
+#define MAGNETOMETER_API_TEST
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -61,12 +61,17 @@
 /* Private variables ---------------------------------------------------------*/
 TX_THREAD tx_app_thread;
 /* USER CODE BEGIN PV */
-
+#ifdef MAGNETOMETER_API_TEST
+magnetometer_t *magnetometer;
+#endif
+#ifdef BAROMETER_API_TEST
+barometer_t *barometer;
+#endif
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN PFP */
-
+int sensor_init(void);
 /* USER CODE END PFP */
 
 /**
@@ -123,7 +128,6 @@ void tx_app_thread_entry(ULONG thread_input)
 	uint8_t icm20689_chip_id    = 0;
 #endif
 
-	LED_ERROR_CLR();
 	spi_init();
 #ifdef BMI088_TEST
 	bmi088_write(BMI088_ACCE, BMI088_ACCE_PWR_CTRL, BMI088_ACC_PWR_CTRL_ACC_ENABLE);
@@ -140,30 +144,23 @@ void tx_app_thread_entry(ULONG thread_input)
 #endif
 
 	printf("\r\n--------- --------- --------- ---------\r\n");
-#ifdef MAG_API_TEST
-	int mag_init_result = ist8310_init();
-	if (mag_init_result != 0) {
-		printf("mag is error\r\n");
+	if (sensor_init() == 0)
+	{
+		LED_WORK_SET();
+		LED_ERROR_CLR();
 	}
-#endif
-
-#ifdef BAROMETER_API_TEST
-	ms5611_init();
-	barometer_t *barometer = sensor_barometer();
-	if (barometer == NULL) {
-		printf("barometer is error\r\n");
+	else {
+		LED_WORK_CLR();
+		LED_ERROR_SET();
 	}
-#endif
 
 	while (1)
 	{
-#ifdef MAG_API_TEST
+#ifdef MAGNETOMETER_API_TEST
 		ist8310_update_data();
-		int j = 0;
-		for (j = 0; j < 3; j++)
-		{
-			printf("output[%d]=%d\r\n", j, ist8310.data[j]);
-		}
+		printf("mag_x=%f\r\n", magnetometer->mag[0]);
+		printf("mag_y=%f\r\n", magnetometer->mag[1]);
+		printf("mag_z=%f\r\n", magnetometer->mag[2]);
 		tx_thread_sleep(50);
 #endif
 
@@ -267,5 +264,31 @@ void MX_ThreadX_Init(void)
 }
 
 /* USER CODE BEGIN 1 */
+int sensor_init(void)
+{
+	int result = 0;
+#ifdef MAGNETOMETER_API_TEST
+	int mag_init_result = ist8310_init();
+	if (mag_init_result != 0) {
+		result = 1;
+		printf("mag is error\r\n");
+	}
+	magnetometer = sensor_magnetometer();
+	if (magnetometer == NULL) {
+		result = 2;
+		printf("magnetometer is error\r\n");
+	}
+#endif
 
+#ifdef BAROMETER_API_TEST
+	ms5611_init();
+	barometer = sensor_barometer();
+	if (barometer == NULL) {
+		result = 3;
+		printf("barometer is error\r\n");
+	}
+#endif
+
+	return result;
+}
 /* USER CODE END 1 */
