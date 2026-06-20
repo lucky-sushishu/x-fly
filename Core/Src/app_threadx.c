@@ -23,6 +23,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "osapi.h"
+#include "uorb_main.h"
+
 #include "usart.h"
 #include "spi.h"
 #include "i2c.h"
@@ -109,7 +112,12 @@ UINT App_ThreadX_Init(VOID *memory_ptr)
   }
 
   /* USER CODE BEGIN App_ThreadX_Init */
-
+  	/* 创建给uorb消息使用的内存使用空间（以内存字节池的形式） */
+	OS_BytePoolCreate(&os_uorb_bytepool, "os uorb bytepool", os_uorb_bytepool_buffer, OS_UORB_BYTE_POOL_SIZE);
+	/* 创建给uorb消息使用的互斥量使用空间（以内存块池的形式） */
+	OS_BlockPoolCreate(&os_uorb_blockpool, "os uorb blockpool", sizeof(OS_MUTEX), os_uorb_blockpool_buffer, OS_UORB_BLOCK_POOL_SIZE);
+	/* Init uorb */
+	uorb_init();
   /* USER CODE END App_ThreadX_Init */
 
   return ret;
