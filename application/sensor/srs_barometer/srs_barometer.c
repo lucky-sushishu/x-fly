@@ -23,6 +23,8 @@ void srs_barometer_entry(ULONG barometer_input)
 	sensor_barometer_t sensor_barometer = {0};
     uorb_advertise(UORB_ID(sensor_barometer));
 
+    ms5611_init();
+
     while (1)
     {
 		ms5611_update_temperature();

@@ -25,6 +25,8 @@ void srs_imu_entry(ULONG imu_input)
 	sensor_imu_t sensor_imu = {0};
     uorb_advertise(UORB_ID(sensor_imu));
 
+    bmi088_init();
+
     while (1)
     {
     	bmi088_update_data();

@@ -23,6 +23,8 @@ void srs_magnetometer_entry(ULONG magnetometer_input)
 	sensor_magnetometer_t sensor_magnetometer = {0};
     uorb_advertise(UORB_ID(sensor_magnetometer));
 
+    ist8310_init();
+
     while (1)
     {
     	ist8310_update_data();
