@@ -1,7 +1,9 @@
+#pragma once
+#ifndef UORB_TEST_H
+#define UORB_TEST_H
 
 #include "osapi-uorb.h"
 
-#pragma once
 
 #ifdef __cplusplus
 typedef struct  __EXPORT uorb_test_s {
@@ -11,6 +13,8 @@ typedef struct uorb_test_s {
 	bool updated;
 	uint64_t timestamp;
 
-}uorb_test_t;
+} uorb_test_t;
 
 UORB_DECLARE(uorb_test);
+
+#endif

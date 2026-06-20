@@ -5,6 +5,16 @@
 #include "topics/uorb_test.h"
 UORB_DEFINE(uorb_test, uorb_test_t);
 
+#include "topics/sensor_imu.h"
+UORB_DEFINE(sensor_imu, sensor_imu_t);
+
+#include "topics/sensor_barometer.h"
+UORB_DEFINE(sensor_barometer, sensor_barometer_t);
+
+#include "topics/sensor_magnetometer.h"
+UORB_DEFINE(sensor_magnetometer, sensor_magnetometer_t);
+
+
 
 
 

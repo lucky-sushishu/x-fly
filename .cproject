@@ -56,6 +56,9 @@
 									<listOptionValue builtIn="false" value="../Middlewares/ST/threadx/common/inc/"/>
 									<listOptionValue builtIn="false" value="../Middlewares/ST/threadx/ports/cortex_m7/gnu/inc/"/>
 									<listOptionValue builtIn="false" value="../Middlewares/ST/threadx/utility/low_power/"/>
+									<listOptionValue builtIn="false" value="../application/sensor/srs_imu"/>
+									<listOptionValue builtIn="false" value="../application/sensor/srs_barometer"/>
+									<listOptionValue builtIn="false" value="../application/sensor/srs_magnetometer"/>
 									<listOptionValue builtIn="false" value="../application/uorb"/>
 									<listOptionValue builtIn="false" value="../application/uorb/topics"/>
 									<listOptionValue builtIn="false" value="../library/sys_time"/>

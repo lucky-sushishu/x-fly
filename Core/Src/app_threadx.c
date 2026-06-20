@@ -39,6 +39,9 @@
 #include "barometer.h"
 #include "magnetometer.h"
 #include <math.h>
+#include "srs_imu.h"
+#include "srs_barometer.h"
+#include "srs_magnetometer.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -48,15 +51,15 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define BMI088_TEST
+//#define BMI088_TEST
 //#define ICM20602_TEST
 //#define ICM20689_TEST
 //#define MS5611_TEST
 //#define IST8310_TEST
 
-#define IMU_API_TEST
-#define BAROMETER_API_TEST
-#define MAGNETOMETER_API_TEST
+//#define IMU_API_TEST
+//#define BAROMETER_API_TEST
+//#define MAGNETOMETER_API_TEST
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -81,6 +84,7 @@ magnetometer_t *magnetometer;
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN PFP */
 int sensor_init(void);
+int application_thread_creat(void);
 /* USER CODE END PFP */
 
 /**
@@ -112,12 +116,14 @@ UINT App_ThreadX_Init(VOID *memory_ptr)
   }
 
   /* USER CODE BEGIN App_ThreadX_Init */
-  	/* 创建给uorb消息使用的内存使用空间（以内存字节池的形式） */
-	OS_BytePoolCreate(&os_uorb_bytepool, "os uorb bytepool", os_uorb_bytepool_buffer, OS_UORB_BYTE_POOL_SIZE);
-	/* 创建给uorb消息使用的互斥量使用空间（以内存块池的形式） */
-	OS_BlockPoolCreate(&os_uorb_blockpool, "os uorb blockpool", sizeof(OS_MUTEX), os_uorb_blockpool_buffer, OS_UORB_BLOCK_POOL_SIZE);
-	/* Init uorb */
-	uorb_init();
+  /* 创建应用线程 */
+  application_thread_creat();
+  /* 创建给uorb消息使用的内存使用空间（以内存字节池的形式） */
+  OS_BytePoolCreate(&os_uorb_bytepool, "os uorb bytepool", os_uorb_bytepool_buffer, OS_UORB_BYTE_POOL_SIZE);
+  /* 创建给uorb消息使用的互斥量使用空间（以内存块池的形式） */
+  OS_BlockPoolCreate(&os_uorb_blockpool, "os uorb blockpool", sizeof(OS_MUTEX), os_uorb_blockpool_buffer, OS_UORB_BLOCK_POOL_SIZE);
+  /* Init uorb */
+  uorb_init();
   /* USER CODE END App_ThreadX_Init */
 
   return ret;
@@ -130,7 +136,7 @@ UINT App_ThreadX_Init(VOID *memory_ptr)
 void tx_app_thread_entry(ULONG thread_input)
 {
   /* USER CODE BEGIN tx_app_thread_entry */
-	int i = 0;
+//	int i = 0;
 #ifdef BMI088_TEST
 	uint8_t bmi088_accl_chip_id = 0;
 	uint8_t bmi088_gyro_chip_id = 0;
@@ -170,6 +176,7 @@ void tx_app_thread_entry(ULONG thread_input)
 
 	while (1)
 	{
+		tx_thread_sleep(50);
 #ifdef IMU_API_TEST
 		bmi088_update_data();
 		tx_thread_sleep(5);
@@ -325,4 +332,29 @@ int sensor_init(void)
 
 	return result;
 }
+
+int application_thread_creat(void)
+{
+	if (tx_thread_create(&g_srs_imu_tcb, "imu", srs_imu_entry, 0, g_srs_imu_stack,
+						  SRS_IMU_STACKSIZE, SRS_IMU_REAL_PRIO, TX_APP_THREAD_PREEMPTION_THRESHOLD,
+						  TX_APP_THREAD_TIME_SLICE, TX_APP_THREAD_AUTO_START) != TX_SUCCESS)
+	{
+		return TX_THREAD_ERROR;
+	}
+	if (tx_thread_create(&g_srs_barometer_tcb, "barometer", srs_barometer_entry, 0, g_srs_barometer_stack,
+						  SRS_BAROMETER_STACKSIZE, SRS_BAROMETER_REAL_PRIO, TX_APP_THREAD_PREEMPTION_THRESHOLD,
+						  TX_APP_THREAD_TIME_SLICE, TX_APP_THREAD_AUTO_START) != TX_SUCCESS)
+	{
+		return TX_THREAD_ERROR;
+	}
+	if (tx_thread_create(&g_srs_magnetometer_tcb, "magnetometer", srs_magnetometer_entry, 0, g_srs_magnetometer_stack,
+						  SRS_MAGNETOMETER_STACKSIZE, SRS_MAGNETOMETER_REAL_PRIO, TX_APP_THREAD_PREEMPTION_THRESHOLD,
+						  TX_APP_THREAD_TIME_SLICE, TX_APP_THREAD_AUTO_START) != TX_SUCCESS)
+	{
+		return TX_THREAD_ERROR;
+	}
+
+	return TX_SUCCESS;
+}
+
 /* USER CODE END 1 */
