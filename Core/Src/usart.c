@@ -156,4 +156,9 @@ int _write(int file, char *ptr, int len)
 	}
 	return len;
 }
+
+void serial_send(uint8_t *data, uint16_t data_length)
+{
+  HAL_UART_Transmit(&huart1, data, data_length, 0xFFFF);
+}
 /* USER CODE END 1 */

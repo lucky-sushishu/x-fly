@@ -64,6 +64,7 @@
 									<listOptionValue builtIn="false" value="../application/uorb/topics"/>
 									<listOptionValue builtIn="false" value="../library/algorithm/MadgwickAHRS"/>
 									<listOptionValue builtIn="false" value="../library/algorithm/MahonyAHRS"/>
+									<listOptionValue builtIn="false" value="../library/ANO"/>
 									<listOptionValue builtIn="false" value="../library/sys_time"/>
 									<listOptionValue builtIn="false" value="../osal/os/inc"/>
 									<listOptionValue builtIn="false" value="../osal/config"/>

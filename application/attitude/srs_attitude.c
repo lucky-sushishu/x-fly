@@ -16,6 +16,7 @@
 #include "topics/sensor_magnetometer.h"
 #include "MadgwickAHRS.h"
 #include "usart.h"
+#include "ano.h"
 
 OS_THREAD                       	g_srs_attitude_tcb;
 UCHAR                           	g_srs_attitude_stack[SRS_ATTITUDE_STACKSIZE];
@@ -39,10 +40,13 @@ void srs_attitude_entry(ULONG attitude_input)
     uorb_sub_t imu_sub                        = uorb_subscribe(UORB_ID(sensor_imu));
     uorb_sub_t barometer_sub                  = uorb_subscribe(UORB_ID(sensor_barometer));
     uorb_sub_t magnetometer_sub               = uorb_subscribe(UORB_ID(sensor_magnetometer));
-
     
     int i                                     = GYRO_BAIS_SAMPLE_NUM;
     float gyro_bais[3]                        = {0.0f};
+
+    uint8_t *data                             = NULL;
+    attitude_euler_t attitude_euler           = {0};
+    attitude_quaternion_t attitude_quaternion = {0};
 
     while (1)
     {
@@ -84,10 +88,28 @@ void srs_attitude_entry(ULONG attitude_input)
                                 MadgwickAHRSupdate(attitude.gx, attitude.gy, attitude.gz,
                                                    attitude.ax, attitude.ay, attitude.az,
                                                    attitude.mx, attitude.my, attitude.mz);
-                                q2euler(q0, q1, q2, q3, &attitude.roll, &attitude.pitch, &attitude.yaw);
-                                printf("roll=%f\r\n", attitude.roll);
-                                printf("pitch=%f\r\n", attitude.pitch);
-                                printf("yaw=%f\r\n", attitude.yaw);
+
+                                attitude_quaternion.v0            = (int16_t)(roundf(q0 * 10000));
+                                attitude_quaternion.v1            = (int16_t)(roundf(q1 * 10000));
+                                attitude_quaternion.v2            = (int16_t)(roundf(q2 * 10000));
+                                attitude_quaternion.v3            = (int16_t)(roundf(q3 * 10000));
+                                attitude_quaternion.fusion_status = 5;
+                                data = ano_pack_data(ANO_BROADCAST_ADDR, ATTITUDE_QUATERNION, ANO_ATTITUDE_Q_LENGTH, (uint8_t* )&attitude_quaternion);
+                                serial_send(data, data[3] + ANO_ELSE_DATA_PACKET_LENGTH);
+                                free(data);
+
+                                q2euler(q0, q1, q2, q3, &attitude.roll, &attitude.pitch, &attitude.yaw);    /* rad */
+                                attitude_euler.roll = (int16_t)(roundf(attitude.roll * 57.3 * 100));
+                                attitude_euler.pitch = (int16_t)(roundf(attitude.pitch * 57.3 * 100));
+                                attitude_euler.yaw = (int16_t)(roundf(attitude.yaw * 57.3 * 100));
+                                attitude_euler.fusion_status = 5;
+                                data = ano_pack_data(ANO_BROADCAST_ADDR, ATTITUDE_EULER, ANO_ATTITUDE_EULER_LENGTH, (uint8_t* )&attitude_euler);
+                                serial_send(data, data[3] + ANO_ELSE_DATA_PACKET_LENGTH);
+                                free(data);
+
+                                // printf("roll=%f\r\n", attitude.roll);
+                                // printf("pitch=%f\r\n", attitude.pitch);
+                                // printf("yaw=%f\r\n", attitude.yaw);
                             }
 
                             OS_TaskDelay(1);
