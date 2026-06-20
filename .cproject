@@ -56,11 +56,14 @@
 									<listOptionValue builtIn="false" value="../Middlewares/ST/threadx/common/inc/"/>
 									<listOptionValue builtIn="false" value="../Middlewares/ST/threadx/ports/cortex_m7/gnu/inc/"/>
 									<listOptionValue builtIn="false" value="../Middlewares/ST/threadx/utility/low_power/"/>
+									<listOptionValue builtIn="false" value="../application/attitude"/>
 									<listOptionValue builtIn="false" value="../application/sensor/srs_imu"/>
 									<listOptionValue builtIn="false" value="../application/sensor/srs_barometer"/>
 									<listOptionValue builtIn="false" value="../application/sensor/srs_magnetometer"/>
 									<listOptionValue builtIn="false" value="../application/uorb"/>
 									<listOptionValue builtIn="false" value="../application/uorb/topics"/>
+									<listOptionValue builtIn="false" value="../library/algorithm/MadgwickAHRS"/>
+									<listOptionValue builtIn="false" value="../library/algorithm/MahonyAHRS"/>
 									<listOptionValue builtIn="false" value="../library/sys_time"/>
 									<listOptionValue builtIn="false" value="../osal/os/inc"/>
 									<listOptionValue builtIn="false" value="../osal/config"/>
@@ -95,7 +98,7 @@
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Middlewares"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="application"/>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="library"/>
+						<entry excluding="algorithm/MahonyAHRS|algorithm/MahonyAHRS/MahonyAHRS.c" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="library"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="osal"/>
 					</sourceEntries>
 				</configuration>
@@ -179,8 +182,8 @@
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="AZURE_RTOS"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Middlewares"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Middlewares"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

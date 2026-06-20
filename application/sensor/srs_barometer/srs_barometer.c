@@ -25,7 +25,8 @@ void srs_barometer_entry(ULONG barometer_input)
 
     while (1)
     {
-    	bmi088_update_data();
+		ms5611_update_temperature();
+		ms5611_update_pressure();
 
         sensor_barometer.pressure    = barometer->pressure;
 		sensor_barometer.temperature = barometer->temperature;

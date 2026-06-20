@@ -42,6 +42,8 @@
 #include "srs_imu.h"
 #include "srs_barometer.h"
 #include "srs_magnetometer.h"
+
+#include "srs_attitude.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -176,7 +178,7 @@ void tx_app_thread_entry(ULONG thread_input)
 
 	while (1)
 	{
-		tx_thread_sleep(50);
+		tx_thread_sleep(1000);
 #ifdef IMU_API_TEST
 		bmi088_update_data();
 		tx_thread_sleep(5);
@@ -349,6 +351,12 @@ int application_thread_creat(void)
 	}
 	if (tx_thread_create(&g_srs_magnetometer_tcb, "magnetometer", srs_magnetometer_entry, 0, g_srs_magnetometer_stack,
 						  SRS_MAGNETOMETER_STACKSIZE, SRS_MAGNETOMETER_REAL_PRIO, TX_APP_THREAD_PREEMPTION_THRESHOLD,
+						  TX_APP_THREAD_TIME_SLICE, TX_APP_THREAD_AUTO_START) != TX_SUCCESS)
+	{
+		return TX_THREAD_ERROR;
+	}
+	if (tx_thread_create(&g_srs_attitude_tcb, "attitude", srs_attitude_entry, 0, g_srs_attitude_stack,
+						  SRS_ATTITUDE_STACKSIZE, SRS_ATTITUDE_REAL_PRIO, TX_APP_THREAD_PREEMPTION_THRESHOLD,
 						  TX_APP_THREAD_TIME_SLICE, TX_APP_THREAD_AUTO_START) != TX_SUCCESS)
 	{
 		return TX_THREAD_ERROR;
