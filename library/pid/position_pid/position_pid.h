@@ -36,7 +36,7 @@ struct position_pid_s
 void  position_pid_init(void);
 float position_pid_update(float aim);
 
-#if defined(__cplusplus)
+#ifdef __cplusplus
 }
 #endif
 

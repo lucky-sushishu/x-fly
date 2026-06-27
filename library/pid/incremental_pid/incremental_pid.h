@@ -32,7 +32,7 @@ struct incremental_pid_s
 void  incremental_pid_init(void);
 float incremental_pid_update(float speed);
 
-#if defined(__cplusplus)
+#ifdef __cplusplus
 }
 #endif
 
