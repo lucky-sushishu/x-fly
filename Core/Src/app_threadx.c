@@ -29,6 +29,7 @@
 #include "usart.h"
 #include "spi.h"
 #include "i2c.h"
+#include "tim.h"
 #include "bmi088.h"
 #include "icm20602.h"
 #include "icm20689.h"
@@ -54,8 +55,8 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 //#define BMI088_TEST
-//#define ICM20602_TEST
-//#define ICM20689_TEST
+#define ICM20602_TEST
+#define ICM20689_TEST
 //#define MS5611_TEST
 //#define IST8310_TEST
 
@@ -119,7 +120,7 @@ UINT App_ThreadX_Init(VOID *memory_ptr)
 
   /* USER CODE BEGIN App_ThreadX_Init */
   /* 创建应用线程 */
-  application_thread_creat();
+//  application_thread_creat();
   /* 创建给uorb消息使用的内存使用空间（以内存字节池的形式） */
   OS_BytePoolCreate(&os_uorb_bytepool, "os uorb bytepool", os_uorb_bytepool_buffer, OS_UORB_BYTE_POOL_SIZE);
   /* 创建给uorb消息使用的互斥量使用空间（以内存块池的形式） */
@@ -138,7 +139,7 @@ UINT App_ThreadX_Init(VOID *memory_ptr)
 void tx_app_thread_entry(ULONG thread_input)
 {
   /* USER CODE BEGIN tx_app_thread_entry */
-//	int i = 0;
+	int i = 0;
 #ifdef BMI088_TEST
 	uint8_t bmi088_accl_chip_id = 0;
 	uint8_t bmi088_gyro_chip_id = 0;
@@ -175,6 +176,15 @@ void tx_app_thread_entry(ULONG thread_input)
 		LED_WORK_CLR();
 		LED_ERROR_SET();
 	}
+
+	HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_1);
+	HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_2);
+	HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_3);
+	HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_4);
+	__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_1, 950);
+	__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_2, 950);
+	__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_3, 950);
+	__HAL_TIM_SetCompare(&htim1, TIM_CHANNEL_4, 950);
 
 	while (1)
 	{
