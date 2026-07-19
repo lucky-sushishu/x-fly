@@ -225,14 +225,14 @@ void tx_app_thread_entry(ULONG thread_input)
 		/* icm20602 test */
 		icm20602_read(ICM20602_WHO_AM_I, &icm20602_chip_id);
 		tx_thread_sleep(500);
-		printf("icm2062: id 0x%02x, %05d\r\n", icm20602_chip_id, i++);
+		printf("icm20602: id 0x%02x, %05d\r\n", icm20602_chip_id, i++);
 #endif
 
 
 #ifdef ICM20689_TEST
 		icm20689_read(ICM20689_WHO_AM_I, &icm20689_chip_id);
 		tx_thread_sleep(500);
-		printf("icm2089: id 0x%02x, %05d\r\n", icm20689_chip_id, i++);
+		printf("icm20689: id 0x%02x, %05d\r\n", icm20689_chip_id, i++);
 #endif
 
 
