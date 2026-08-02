@@ -32,13 +32,13 @@ extern "C" {
 
 /* USER CODE END Includes */
 
-extern MMC_HandleTypeDef hmmc1;
+extern SD_HandleTypeDef hsd1;
 
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
 
-void MX_SDMMC1_MMC_Init(void);
+HAL_StatusTypeDef MX_SDMMC1_SD_Init(void);
 
 /* USER CODE BEGIN Prototypes */
 

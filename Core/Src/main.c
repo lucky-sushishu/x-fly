@@ -100,7 +100,7 @@ int main(void)
   MX_SPI3_Init();
   MX_I2C1_Init();
   MX_TIM1_Init();
-  MX_SDMMC1_MMC_Init();
+  MX_SDMMC1_SD_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */

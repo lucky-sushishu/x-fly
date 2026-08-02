@@ -16,6 +16,10 @@
   *
   ******************************************************************************
   */
+/* SDMMC 内部软件超时:默认 0xFFFFFFFF(约 49.7 天),导致 HAL_SD_Init 内部
+   读 SCR/卡状态(如 SD_FindSCR)在卡异常时无限等待。这里改为 5 秒,
+   让初始化失败能够返回,由上层驱动重试或报错,避免整机卡死。 */
+#define SDMMC_SWDATATIMEOUT                5000U
 /* USER CODE END Header */
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef STM32H7xx_HAL_CONF_H
@@ -69,8 +73,8 @@
 /* #define HAL_RNG_MODULE_ENABLED   */
 /* #define HAL_RTC_MODULE_ENABLED   */
 /* #define HAL_SAI_MODULE_ENABLED   */
-/* #define HAL_SD_MODULE_ENABLED   */
-#define HAL_MMC_MODULE_ENABLED
+#define HAL_SD_MODULE_ENABLED
+/* #define HAL_MMC_MODULE_ENABLED   */
 /* #define HAL_SPDIFRX_MODULE_ENABLED   */
 #define HAL_SPI_MODULE_ENABLED
 /* #define HAL_SWPMI_MODULE_ENABLED   */
