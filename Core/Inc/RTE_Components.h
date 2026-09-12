@@ -24,6 +24,8 @@
 /* Defines ------------------------------------------------------------------*/
 /* STMicroelectronics.X-CUBE-AZRTOS-H7.3.3.0 */
 #define FILEX_ENABLED
+NX_ETH_INTERFACE_ENABLED
+#define LAN8742
 #define THREADX_ENABLED
 #define TRACEX_SUPPORT_ENABLED
 #define NETXDUO_ENABLED
