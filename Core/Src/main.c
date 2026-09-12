@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "app_threadx.h"
 #include "main.h"
+#include "eth.h"
 #include "i2c.h"
 #include "sdmmc.h"
 #include "spi.h"
@@ -101,6 +102,7 @@ int main(void)
   MX_I2C1_Init();
   MX_TIM1_Init();
   MX_SDMMC1_SD_Init();
+  MX_ETH_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */

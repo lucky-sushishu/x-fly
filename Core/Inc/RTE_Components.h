@@ -26,5 +26,6 @@
 #define FILEX_ENABLED
 #define THREADX_ENABLED
 #define TRACEX_SUPPORT_ENABLED
+#define NETXDUO_ENABLED
 
 #endif /* __RTE_COMPONENTS_H__ */
