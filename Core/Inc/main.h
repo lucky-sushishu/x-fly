@@ -65,6 +65,8 @@ void Error_Handler(void);
 #define SPI3_CS2_GPIO_Port GPIOD
 #define SPI3_CS1_Pin GPIO_PIN_11
 #define SPI3_CS1_GPIO_Port GPIOD
+#define ETH_RESET_Pin GPIO_PIN_3
+#define ETH_RESET_GPIO_Port GPIOD
 
 /* USER CODE BEGIN Private defines */
 
