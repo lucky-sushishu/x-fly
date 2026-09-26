@@ -86,8 +86,10 @@ extern   "C" {
 /**************************************************************************/
 #if defined(__CORTEX_M)
 #if (defined (__DCACHE_PRESENT) && (__DCACHE_PRESENT == 1U))
-#define invalidate_cache_by_addr(__ptr__, __size__)                  SCB_InvalidateDCache_by_Addr((void *)(__ptr__), (int32_t)(__size__))
-#define clean_cache_by_addr(__ptr__, __size__)                       SCB_CleanDCache_by_Addr((uint32_t *)(__ptr__), (int32_t)(__size__))
+// #define invalidate_cache_by_addr(__ptr__, __size__)                  SCB_InvalidateDCache_by_Addr((void *)(__ptr__), (int32_t)(__size__))
+// #define clean_cache_by_addr(__ptr__, __size__)                       SCB_CleanDCache_by_Addr((uint32_t *)(__ptr__), (int32_t)(__size__))
+#define invalidate_cache_by_addr(__ptr__, __size__)
+#define clean_cache_by_addr(__ptr__, __size__)
 #else
 #define invalidate_cache_by_addr(__ptr__, __size__)
 #define clean_cache_by_addr(__ptr__, __size__)
