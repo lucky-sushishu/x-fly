@@ -24,7 +24,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <stdint.h>
+#include "nx_stm32_phy_driver.h"
+#include "nx_stm32_eth_config.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -39,7 +41,8 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-
+#define NX_APP_LINK_POLL_PERIOD              (NX_IP_PERIODIC_RATE / 4U)   /* 250 ms */
+#define NX_APP_STATUS_PERIOD                 20U                          /* 20 x 250ms = 5 s */
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -198,6 +201,35 @@ static VOID nx_app_thread_entry (ULONG thread_input)
 {
   /* USER CODE BEGIN Nx_App_Thread_Entry 0 */
 
+  int32_t phy_state;
+  int32_t last_phy_state = -1;
+  UINT    last_enable_status = 0xFFFFFFFFU;
+  while (1)
+  {
+    phy_state = nx_eth_phy_get_link_state();
+
+    if (phy_state != last_phy_state)
+    {
+      printf("[NET] phy_link_state=%ld\r\n", (long)phy_state);
+      last_phy_state = phy_state;
+    }
+
+    if ((phy_state >= ETH_PHY_STATUS_100MBITS_FULLDUPLEX) &&
+        (phy_state <= ETH_PHY_STATUS_10MBITS_HALFDUPLEX))
+    {
+      ULONG ret_value = 0U;
+      UINT  status;
+
+      status = nx_ip_driver_direct_command(&NetXDuoEthIpInstance, NX_LINK_ENABLE, &ret_value);
+
+      if (status != last_enable_status)
+      {
+        printf("[NET] NX_LINK_ENABLE -> 0x%02X (0x15=already enabled)\r\n", (unsigned int)status);
+        last_enable_status = status;
+      }
+    }
+    tx_thread_sleep(NX_APP_LINK_POLL_PERIOD);
+  }
   /* USER CODE END Nx_App_Thread_Entry 0 */
 
 }
