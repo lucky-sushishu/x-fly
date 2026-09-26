@@ -52,6 +52,9 @@ void MX_ETH_Init(void)
 {
 
   /* USER CODE BEGIN ETH_Init 0 */
+  HAL_GPIO_WritePin(ETH_RESET_GPIO_Port, ETH_RESET_Pin, GPIO_PIN_RESET);
+  HAL_Delay(25);
+  HAL_GPIO_WritePin(ETH_RESET_GPIO_Port, ETH_RESET_Pin, GPIO_PIN_SET);
 
   /* USER CODE END ETH_Init 0 */
 
